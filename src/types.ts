@@ -2,6 +2,7 @@ export interface Conjugation {
   french: String;
   concatenate?: Boolean;
   english: String;
+  [key: string]: any;
 }
 
 export interface Verb {
@@ -12,4 +13,5 @@ export interface Verb {
   firstPersonPlural: Conjugation;
   secondPersonPlural: Conjugation;
   thirdPersonPlural: Conjugation;
+  [key: string]: any;
 }

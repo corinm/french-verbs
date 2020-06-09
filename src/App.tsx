@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import DisplayVerb from "./components/DisplayVerb";
+import TestConjugation from "./components/TestConjugation";
 
 import verbs from "./data";
 
@@ -17,6 +18,7 @@ const App = () => (
     {verbs.map((verb, i) => (
       <DisplayVerb key={i} {...verb} />
     ))}
+    <TestConjugation verbs={verbs} />
   </Styling>
 );
 
