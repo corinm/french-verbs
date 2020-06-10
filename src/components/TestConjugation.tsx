@@ -1,10 +1,12 @@
 import React from "react";
-import { Input, Header, Form, Label, Statistic } from "semantic-ui-react";
+import { Input, Header, Form } from "semantic-ui-react";
 
 import useQuestion from "./useQuestion";
 import useStats from "./useStats";
 import useManageGuess from "./useManageGuess";
 import { Verb } from "../types";
+import Feedback from "./Feedback";
+import Stats from "./Stats";
 
 const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
   const { correctCount, total, incrementCorrect, incrementWrong } = useStats();
@@ -42,33 +44,9 @@ const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
           answer={answer}
         />
       </Form.Field>
-      <Statistic>
-        <Statistic.Value>
-          {correctCount} / {total}
-        </Statistic.Value>
-        <Statistic.Label>Correct</Statistic.Label>
-      </Statistic>
+      <Stats correct={correctCount} total={total} />
     </div>
   );
-};
-
-const Feedback: React.FC<{
-  hasSubmittedAnswer: Boolean;
-  isCorrect: Boolean;
-  answer: string;
-}> = ({ hasSubmittedAnswer, isCorrect, answer }) => {
-  if (hasSubmittedAnswer) {
-    if (isCorrect) {
-      return (
-        <Label pointing="left" color="green">
-          {"✅"}
-        </Label>
-      );
-    } else {
-      return <Label pointing="left" color="red">{`╳ ${answer}`}</Label>;
-    }
-  }
-  return null;
 };
 
 export default TestConjugation;
