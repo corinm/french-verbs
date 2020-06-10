@@ -7,17 +7,9 @@ import {
   getPronoun,
 } from "./helpers";
 
-const isSame = (guess: string, answer: string): boolean => {
-  const answerWithoutPlural = answer.replace(" (p) ", " ");
-  return guess.toLowerCase() === answerWithoutPlural.toLowerCase();
-};
-
-const useQuestion = (verbs: Verb[], onCorrect: Function, onWrong: Function) => {
+const useQuestion = (verbs: Verb[]) => {
   const [question, setQuestion] = useState<string>();
   const [answer, setAnswer] = useState<string>("");
-  const [guess, setGuess] = useState("");
-  const [hasSubmittedAnswer, setHasSubmittedAnswer] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
 
   const newQuestion = () => {
     const verbIndex = randomVerb(verbs);
@@ -43,40 +35,13 @@ const useQuestion = (verbs: Verb[], onCorrect: Function, onWrong: Function) => {
     const answer = `${answerPronoun}${answerWord}`;
     setQuestion(question);
     setAnswer(answer);
-    setGuess("");
-    setHasSubmittedAnswer(false);
   };
 
   if (!question) {
     newQuestion();
   }
 
-  const onSubmit = () => {
-    if (hasSubmittedAnswer) {
-      newQuestion();
-    } else {
-      if (guess !== "") {
-        setHasSubmittedAnswer(true);
-        if (isSame(guess, answer)) {
-          setIsCorrect(true);
-          onCorrect();
-        } else {
-          setIsCorrect(false);
-          onWrong();
-        }
-      }
-    }
-  };
-
-  return {
-    question,
-    answer,
-    guess,
-    setGuess,
-    hasSubmittedAnswer,
-    isCorrect,
-    onSubmit,
-  };
+  return { question, answer, newQuestion };
 };
 
 export default useQuestion;

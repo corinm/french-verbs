@@ -1,36 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { Input, Header, Form, Label, Statistic } from "semantic-ui-react";
 
 import useQuestion from "./useQuestion";
+import useStats from "./useStats";
+import useManageGuess from "./useManageGuess";
 import { Verb } from "../types";
-
-const useStats = () => {
-  const [correctCount, setCorrectCount] = useState(0);
-  const [wrongCount, setWrongCount] = useState(0);
-
-  const incrementCorrect = () => setCorrectCount(correctCount + 1);
-  const incrementWrong = () => setWrongCount(wrongCount + 1);
-
-  return {
-    correctCount,
-    incrementCorrect,
-    wrongCount,
-    incrementWrong,
-    total: correctCount + wrongCount,
-  };
-};
 
 const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
   const { correctCount, total, incrementCorrect, incrementWrong } = useStats();
+  const { question, answer, newQuestion } = useQuestion(verbs);
   const {
-    question,
-    answer,
     guess,
     setGuess,
     hasSubmittedAnswer,
     isCorrect,
     onSubmit,
-  } = useQuestion(verbs, incrementCorrect, incrementWrong);
+  } = useManageGuess(answer, incrementCorrect, incrementWrong, newQuestion);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setGuess(event.target.value);
