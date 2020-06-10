@@ -39,8 +39,8 @@ const otherFrenchPronouns: Pronouns = {
   secondPersonSingular: "tu ",
   thirdPersonSingular: "il/elle ",
   firstPersonPlural: "nous ",
-  secondPersonPlural: "vous",
-  thirdPersonPlural: "ils/elles",
+  secondPersonPlural: "vous ",
+  thirdPersonPlural: "ils/elles ",
 };
 
 export const frenchPronounFromConjugation = (
@@ -72,8 +72,8 @@ export const getPronoun = (
   concatenate: Boolean
 ) => {
   if (language === "french") {
-    return frenchPronounFromConjugation(conjugation, concatenate);
+    return frenchPronounFromConjugation(conjugation, concatenate) || "";
   } else {
-    return englishPronounFromConjugation(conjugation);
+    return englishPronounFromConjugation(conjugation) || "";
   }
 };

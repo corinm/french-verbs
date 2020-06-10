@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
-import DisplayVerb from "./components/DisplayVerb";
+import ListVerbs from "./components/ListVerbs";
 import TestConjugation from "./components/TestConjugation";
 
 import verbs from "./data";
@@ -15,10 +16,26 @@ const Styling = styled.div`
 const App = () => (
   <Styling>
     <div>App</div>
-    {verbs.map((verb, i) => (
-      <DisplayVerb key={i} {...verb} />
-    ))}
-    <TestConjugation verbs={verbs} />
+
+    <Router>
+      <div>
+        <Link to="/">
+          <button>Test</button>
+        </Link>
+        <Link to="/list">
+          <button>List</button>
+        </Link>
+      </div>
+
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => <TestConjugation verbs={verbs} />}
+        />
+        <Route path="/list" render={() => <ListVerbs verbs={verbs} />}></Route>
+      </Switch>
+    </Router>
   </Styling>
 );
 
