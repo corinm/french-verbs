@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Header } from "semantic-ui-react";
+import { Input, Header, Form, Label } from "semantic-ui-react";
 
 import useQuestion from "./useQuestion";
 import { Verb } from "../types";
@@ -27,12 +27,15 @@ const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
   return (
     <div>
       <Header as="h1">{question}</Header>
-      <Feedback
-        hasSubmittedAnswer={hasSubmittedAnswer}
-        isCorrect={isCorrect}
-        answer={answer}
-      />
-      <Input value={guess} onChange={onInputChange} onKeyPress={onKeyPress} />
+
+      <Form.Field inline>
+        <Input value={guess} onChange={onInputChange} onKeyPress={onKeyPress} />
+        <Feedback
+          hasSubmittedAnswer={hasSubmittedAnswer}
+          isCorrect={isCorrect}
+          answer={answer}
+        />
+      </Form.Field>
     </div>
   );
 };
@@ -40,13 +43,17 @@ const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
 const Feedback: React.FC<{
   hasSubmittedAnswer: Boolean;
   isCorrect: Boolean;
-  answer: string | undefined;
+  answer: string;
 }> = ({ hasSubmittedAnswer, isCorrect, answer }) => {
   if (hasSubmittedAnswer) {
     if (isCorrect) {
-      return <span>{"✅"}</span>;
+      return (
+        <Label pointing="left" color="green">
+          {"✅"}
+        </Label>
+      );
     } else {
-      return <span>{`Answer should have been: ${answer}`}</span>;
+      return <Label pointing="left" color="red">{`╳ ${answer}`}</Label>;
     }
   }
   return null;

@@ -7,9 +7,14 @@ import {
   getPronoun,
 } from "./helpers";
 
+const isSame = (guess: string, answer: string): boolean => {
+  const answerWithoutPlural = answer.replace(" (p) ", " ");
+  return guess.toLowerCase() === answerWithoutPlural.toLowerCase();
+};
+
 const useQuestion = (verbs: Verb[]) => {
   const [question, setQuestion] = useState<string>();
-  const [answer, setAnswer] = useState<string>();
+  const [answer, setAnswer] = useState<string>("");
   const [guess, setGuess] = useState("");
   const [hasSubmittedAnswer, setHasSubmittedAnswer] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -52,7 +57,7 @@ const useQuestion = (verbs: Verb[]) => {
     } else {
       if (guess !== "") {
         setHasSubmittedAnswer(true);
-        if (guess === answer) {
+        if (isSame(guess, answer)) {
           setIsCorrect(true);
         } else {
           setIsCorrect(false);
