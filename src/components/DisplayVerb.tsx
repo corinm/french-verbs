@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Segment } from "semantic-ui-react";
+import { Header, Segment } from "semantic-ui-react";
 
 import { Verb } from "../types";
 
@@ -36,7 +36,7 @@ const DisplayVerb: React.FC<Verb> = ({
   <VerbContainer>
     <Segment.Group>
       <Segment>
-        <Conjugation pronoun="" verb={infinitive.french} />
+        <Header as="h2">{infinitive.french}</Header>
       </Segment>
       <Segment.Group horizontal>
         <Segment>
