@@ -12,7 +12,7 @@ const isSame = (guess: string, answer: string): boolean => {
   return guess.toLowerCase() === answerWithoutPlural.toLowerCase();
 };
 
-const useQuestion = (verbs: Verb[]) => {
+const useQuestion = (verbs: Verb[], onCorrect: Function, onWrong: Function) => {
   const [question, setQuestion] = useState<string>();
   const [answer, setAnswer] = useState<string>("");
   const [guess, setGuess] = useState("");
@@ -59,8 +59,10 @@ const useQuestion = (verbs: Verb[]) => {
         setHasSubmittedAnswer(true);
         if (isSame(guess, answer)) {
           setIsCorrect(true);
+          onCorrect();
         } else {
           setIsCorrect(false);
+          onWrong();
         }
       }
     }
