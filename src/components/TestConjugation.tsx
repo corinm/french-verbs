@@ -29,7 +29,12 @@ const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
       <Header as="h1">{question}</Header>
 
       <Form.Field inline>
-        <Input value={guess} onChange={onInputChange} onKeyPress={onKeyPress} />
+        <Input
+          placeholder="Answer"
+          value={guess}
+          onChange={onInputChange}
+          onKeyPress={onKeyPress}
+        />
         <Feedback
           hasSubmittedAnswer={hasSubmittedAnswer}
           isCorrect={isCorrect}
