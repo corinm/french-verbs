@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Segment } from "semantic-ui-react";
 
+import Menu from "./components/Menu";
 import ListVerbs from "./components/ListVerbs";
 import TestConjugation from "./components/TestConjugation";
 
@@ -18,23 +20,21 @@ const App = () => (
     <div>App</div>
 
     <Router>
-      <div>
-        <Link to="/">
-          <button>Test</button>
-        </Link>
-        <Link to="/list">
-          <button>List</button>
-        </Link>
-      </div>
+      <Menu />
 
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => <TestConjugation verbs={verbs} />}
-        />
-        <Route path="/list" render={() => <ListVerbs verbs={verbs} />}></Route>
-      </Switch>
+      <Segment>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => <TestConjugation verbs={verbs} />}
+          />
+          <Route
+            path="/list"
+            render={() => <ListVerbs verbs={verbs} />}
+          ></Route>
+        </Switch>
+      </Segment>
     </Router>
   </Styling>
 );

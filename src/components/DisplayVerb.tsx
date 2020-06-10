@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { Segment } from "semantic-ui-react";
 
 import { Verb } from "../types";
 
 const VerbContainer = styled.div`
-  border: 1px solid black;
-  padding: 5px;
+  margin-bottom: 10px;
 `;
 const PronounText = styled.span`
   color: grey;
@@ -34,16 +34,26 @@ const DisplayVerb: React.FC<Verb> = ({
   thirdPersonPlural,
 }) => (
   <VerbContainer>
-    <Conjugation pronoun="" verb={infinitive.french} />
-    <Conjugation
-      pronoun={firstPersonSingular.concatenate ? "j'" : "je "}
-      verb={firstPersonSingular.french}
-    />
-    <Conjugation pronoun="tu " verb={secondPersonSingular.french} />
-    <Conjugation pronoun="il/elle " verb={thirdPersonSingular.french} />
-    <Conjugation pronoun="nous " verb={firstPersonPlural.french} />
-    <Conjugation pronoun="vous " verb={secondPersonPlural.french} />
-    <Conjugation pronoun="ils/elles " verb={thirdPersonPlural.french} />
+    <Segment.Group>
+      <Segment>
+        <Conjugation pronoun="" verb={infinitive.french} />
+      </Segment>
+      <Segment.Group horizontal>
+        <Segment>
+          <Conjugation
+            pronoun={firstPersonSingular.concatenate ? "j'" : "je "}
+            verb={firstPersonSingular.french}
+          />
+          <Conjugation pronoun="tu " verb={secondPersonSingular.french} />
+          <Conjugation pronoun="il/elle " verb={thirdPersonSingular.french} />
+        </Segment>
+        <Segment>
+          <Conjugation pronoun="nous " verb={firstPersonPlural.french} />
+          <Conjugation pronoun="vous " verb={secondPersonPlural.french} />
+          <Conjugation pronoun="ils/elles " verb={thirdPersonPlural.french} />
+        </Segment>
+      </Segment.Group>
+    </Segment.Group>
   </VerbContainer>
 );
 

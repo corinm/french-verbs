@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Input } from "semantic-ui-react";
 
 import { Verb } from "../types";
 import {
@@ -100,11 +101,7 @@ const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
         <div>A: {answer}</div>
         <div>Correct? {hasSubmittedAnswer ? isCorrect.toString() : null}</div>
       </div>
-      <input
-        value={guess}
-        onChange={onInputChange}
-        onKeyPress={onKeyPress}
-      ></input>
+      <Input value={guess} onChange={onInputChange} onKeyPress={onKeyPress} />
     </div>
   );
 };
