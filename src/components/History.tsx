@@ -1,4 +1,5 @@
 import React from "react";
+import { List } from "semantic-ui-react";
 
 import { QuestionHistoryItem } from "../types";
 
@@ -6,14 +7,14 @@ const History: React.FC<{ questionHistory: QuestionHistoryItem[] }> = ({
   questionHistory,
 }) => {
   return (
-    <div>
+    <List>
       {questionHistory.map((item, i) => (
-        <div key={i}>
-          {item.question}
-          {item.wasCorrect ? " ✅" : " ❌"}
-        </div>
+        <List.Item key={i}>
+          <List.Icon name={item.wasCorrect ? "check" : "times"} />
+          <List.Content>{item.question}</List.Content>
+        </List.Item>
       ))}
-    </div>
+    </List>
   );
 };
 
