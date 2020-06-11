@@ -10,6 +10,12 @@ const Menu = () => {
       <Link to="/">
         <SemanticMenu.Item name="Test me" active={location.pathname === "/"} />
       </Link>
+      <Link to="/history">
+        <SemanticMenu.Item
+          name="Answer history"
+          active={location.pathname === "/history"}
+        />
+      </Link>
       <Link to="/list">
         <SemanticMenu.Item
           name="List of verbs"

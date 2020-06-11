@@ -22,3 +22,9 @@ export interface Meta {
   questionLanguage: string;
   answerLanguage: string;
 }
+
+export interface QuestionHistoryItem {
+  question: string;
+  meta: Meta;
+  wasCorrect: boolean;
+}

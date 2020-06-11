@@ -1,24 +1,30 @@
 import React from "react";
 import { Input, Header, Form } from "semantic-ui-react";
 
-import useQuestion from "./useQuestion";
-import useStats from "./useStats";
-import useManageGuess from "./useManageGuess";
-import { Verb } from "../types";
 import Feedback from "./Feedback";
 import Stats from "./Stats";
 
-const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
-  const { correctCount, total, incrementCorrect, incrementWrong } = useStats();
-  const { question, answer, newQuestion, meta } = useQuestion(verbs);
-  const {
-    guess,
-    setGuess,
-    hasSubmittedAnswer,
-    isCorrect,
-    onSubmit,
-  } = useManageGuess(answer, incrementCorrect, incrementWrong, newQuestion);
-
+const TestConjugation: React.FC<{
+  setGuess: Function;
+  onSubmit: Function;
+  question: string | undefined;
+  answer: string;
+  guess: string;
+  hasSubmittedAnswer: boolean;
+  isCorrect: boolean;
+  total: number;
+  correctCount: number;
+}> = ({
+  setGuess,
+  onSubmit,
+  question,
+  answer,
+  guess,
+  hasSubmittedAnswer,
+  isCorrect,
+  total,
+  correctCount,
+}) => {
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setGuess(event.target.value);
 
@@ -44,7 +50,7 @@ const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
           answer={answer}
         />
       </Form.Field>
-      <Stats correct={correctCount} total={total} meta={meta} />
+      <Stats correct={correctCount} total={total} />
     </div>
   );
 };

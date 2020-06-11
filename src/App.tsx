@@ -4,8 +4,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Segment } from "semantic-ui-react";
 
 import Menu from "./components/Menu";
-import ListVerbs from "./components/ListVerbs";
 import TestConjugation from "./components/TestConjugation";
+import History from "./components/History";
+import ListVerbs from "./components/ListVerbs";
+
+import useGenerateQuestions from "./hooks/useGenerateQuestions";
+import useStats from "./hooks/useStats";
+import useManageGuess from "./hooks/useManageGuess";
 
 import verbs from "./data";
 
@@ -15,28 +20,52 @@ const Styling = styled.div`
   }
 `;
 
-const App = () => (
-  <Styling>
-    <div>App</div>
+const App = () => {
+  const statsProps = useStats();
+  const questionProps = useGenerateQuestions(verbs);
+  const guessProps = useManageGuess(
+    questionProps.answer,
+    statsProps.incrementCorrect,
+    statsProps.incrementWrong,
+    questionProps.newQuestion,
+    questionProps.recordOutcome
+  );
 
-    <Router>
-      <Menu />
+  return (
+    <Styling>
+      <div>App</div>
 
-      <Segment>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => <TestConjugation verbs={verbs} />}
-          />
-          <Route
-            path="/list"
-            render={() => <ListVerbs verbs={verbs} />}
-          ></Route>
-        </Switch>
-      </Segment>
-    </Router>
-  </Styling>
-);
+      <Router>
+        <Menu />
+
+        <Segment>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <TestConjugation
+                  {...statsProps}
+                  {...questionProps}
+                  {...guessProps}
+                />
+              )}
+            />
+            <Route
+              path="/history"
+              render={() => (
+                <History questionHistory={questionProps.questionHistory} />
+              )}
+            />
+            <Route
+              path="/list"
+              render={() => <ListVerbs verbs={verbs} />}
+            ></Route>
+          </Switch>
+        </Segment>
+      </Router>
+    </Styling>
+  );
+};
 
 export default App;

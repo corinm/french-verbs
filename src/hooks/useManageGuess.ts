@@ -9,7 +9,8 @@ const useManageGuess = (
   correctAnswer: string,
   onCorrect: Function,
   onWrong: Function,
-  onSecondSubmit: Function
+  onSecondSubmit: Function,
+  recordOutcome: Function
 ) => {
   const [guess, setGuess] = useState("");
   const [hasSubmittedAnswer, setHasSubmittedAnswer] = useState(false);
@@ -25,9 +26,11 @@ const useManageGuess = (
         setHasSubmittedAnswer(true);
         if (isSame(guess, correctAnswer)) {
           setIsCorrect(true);
+          recordOutcome(true);
           onCorrect();
         } else {
           setIsCorrect(false);
+          recordOutcome(false);
           onWrong();
         }
       }

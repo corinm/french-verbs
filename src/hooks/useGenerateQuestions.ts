@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Verb, Meta } from "../types";
+import { Verb, Meta, QuestionHistoryItem } from "../types";
 import {
   randomVerb,
   randomConjugation,
@@ -7,10 +7,36 @@ import {
   getPronoun,
 } from "./helpers";
 
+const useQuestionHistory = (question = "", meta: Meta | undefined) => {
+  const [questionHistory, setQuestionHistory] = useState<QuestionHistoryItem[]>(
+    []
+  );
+
+  const recordOutcome = (wasCorrect: boolean) => {
+    setQuestionHistory([
+      ...questionHistory,
+      {
+        question,
+        meta: meta || {
+          verbIndex: 0,
+          conjugation: "",
+          questionLanguage: "",
+          answerLanguage: "",
+        },
+        wasCorrect,
+      },
+    ]);
+  };
+
+  return { questionHistory, recordOutcome };
+};
+
 const useQuestion = (verbs: Verb[]) => {
   const [question, setQuestion] = useState<string>();
   const [answer, setAnswer] = useState<string>("");
   const [meta, setMeta] = useState<Meta>();
+
+  const { questionHistory, recordOutcome } = useQuestionHistory(question, meta);
 
   const newQuestion = () => {
     const verbIndex = randomVerb(verbs);
@@ -43,7 +69,7 @@ const useQuestion = (verbs: Verb[]) => {
     newQuestion();
   }
 
-  return { question, answer, newQuestion, meta };
+  return { question, answer, newQuestion, recordOutcome, questionHistory };
 };
 
 export default useQuestion;
