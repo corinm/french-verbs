@@ -33,6 +33,7 @@ const TestConjugation: React.FC<{
       onSubmit();
     }
   };
+  const doNothing = () => {};
 
   return (
     <div>
@@ -41,7 +42,7 @@ const TestConjugation: React.FC<{
         <Input
           placeholder="Answer"
           value={guess}
-          onChange={onInputChange}
+          onChange={hasSubmittedAnswer ? doNothing : onInputChange}
           onKeyPress={onKeyPress}
         />
         <Feedback
