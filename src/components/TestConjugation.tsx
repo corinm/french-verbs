@@ -10,7 +10,7 @@ import Stats from "./Stats";
 
 const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
   const { correctCount, total, incrementCorrect, incrementWrong } = useStats();
-  const { question, answer, newQuestion } = useQuestion(verbs);
+  const { question, answer, newQuestion, meta } = useQuestion(verbs);
   const {
     guess,
     setGuess,
@@ -44,7 +44,7 @@ const TestConjugation: React.FC<{ verbs: Verb[] }> = ({ verbs }) => {
           answer={answer}
         />
       </Form.Field>
-      <Stats correct={correctCount} total={total} />
+      <Stats correct={correctCount} total={total} meta={meta} />
     </div>
   );
 };

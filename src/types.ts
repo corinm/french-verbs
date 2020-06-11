@@ -15,3 +15,10 @@ export interface Verb {
   thirdPersonPlural: Conjugation;
   [key: string]: any;
 }
+
+export interface Meta {
+  verbIndex: number;
+  conjugation: string;
+  questionLanguage: string;
+  answerLanguage: string;
+}

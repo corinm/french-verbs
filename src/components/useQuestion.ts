@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Verb } from "../types";
+import { Verb, Meta } from "../types";
 import {
   randomVerb,
   randomConjugation,
@@ -10,6 +10,7 @@ import {
 const useQuestion = (verbs: Verb[]) => {
   const [question, setQuestion] = useState<string>();
   const [answer, setAnswer] = useState<string>("");
+  const [meta, setMeta] = useState<Meta>();
 
   const newQuestion = () => {
     const verbIndex = randomVerb(verbs);
@@ -35,13 +36,14 @@ const useQuestion = (verbs: Verb[]) => {
     const answer = `${answerPronoun}${answerWord}`;
     setQuestion(question);
     setAnswer(answer);
+    setMeta({ verbIndex, conjugation, questionLanguage, answerLanguage });
   };
 
   if (!question) {
     newQuestion();
   }
 
-  return { question, answer, newQuestion };
+  return { question, answer, newQuestion, meta };
 };
 
 export default useQuestion;
