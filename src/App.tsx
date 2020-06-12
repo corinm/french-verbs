@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Segment } from "semantic-ui-react";
+import { Segment, Header } from "semantic-ui-react";
 
 import Menu from "./components/Menu";
 import TestConjugation from "./components/TestConjugation";
@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <Styling>
-      <div>App</div>
+      <Header as="h1">French verbs</Header>
 
       <Router>
         <Menu />
@@ -54,7 +54,10 @@ const App = () => {
             <Route
               path="/history"
               render={() => (
-                <History questionHistory={questionProps.questionHistory} />
+                <History
+                  questionHistory={questionProps.questionHistory}
+                  otherHistory={questionProps.otherHistory}
+                />
               )}
             />
             <Route

@@ -28,3 +28,7 @@ export interface QuestionHistoryItem {
   meta: Meta;
   wasCorrect: boolean;
 }
+
+export interface OtherHistory {
+  [key: string]: number;
+}
