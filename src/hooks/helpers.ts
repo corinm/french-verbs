@@ -1,4 +1,4 @@
-import { Verb } from "../types";
+import { Verb, QuestionRankings, Meta } from "../types";
 
 const randomNumber = (max: number): number => {
   const min = 0;
@@ -81,4 +81,38 @@ export const getPronoun = (
 export const isSame = (guess: string, answer: string): boolean => {
   const answerWithoutPlural = answer.replace(" (p) ", " ");
   return guess.toLowerCase() === answerWithoutPlural.toLowerCase();
+};
+
+const conjugationsArray: string[] = [
+  "infinitive",
+  "firstPersonSingular",
+  "secondPersonSingular",
+  "thirdPersonSingular",
+  "firstPersonPlural",
+  "secondPersonPlural",
+  "thirdPersonPlural",
+];
+
+/**
+ * Start with first verb, work through each conjugation in turn, french then english
+ * Then work on any mistakes until each scores 2 or more
+ * Then repeat for each verb in turn
+ */
+export const pickQuestion = (
+  verbs: Verb[],
+  rankings: QuestionRankings
+): Meta => {
+  if (Object.keys(rankings).length <= 7) {
+    return {
+      verbIndex: 0,
+      conjugation: conjugationsArray[Object.keys(rankings).length],
+      questionLanguage: "french",
+      answerLanguage: "english",
+    };
+  }
+
+  const verbIndex = randomVerb(verbs);
+  const conjugation = randomConjugation();
+  const [questionLanguage, answerLanguage] = randomLanguage();
+  return { verbIndex, conjugation, questionLanguage, answerLanguage };
 };
