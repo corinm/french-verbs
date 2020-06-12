@@ -1,20 +1,19 @@
-import {
-  Verb,
-  Meta,
-  Conjugation,
-  QuestionRankings,
-  RankingItem,
-} from "../types";
+import { Verb, Conjugation, QuestionRankings, RankingItem } from "../types";
 import { getPronoun } from "../hooks/helpers";
 
-export const getVerbTextWithPronoun = (verbs: Verb[], meta: Meta): string => {
-  const conjugation: Conjugation = verbs[meta.verbIndex][meta.conjugation];
+export const getVerb = (
+  verbs: Verb[],
+  verbIndex: number,
+  conjugation: string,
+  language: string
+): string => {
+  const conjugationData: Conjugation = verbs[verbIndex][conjugation];
   const pronoun: string = getPronoun(
-    meta.conjugation,
-    meta.questionLanguage,
-    !!conjugation.concatenate
+    conjugation,
+    language,
+    !!conjugationData.concatenate
   );
-  const verb: string = conjugation[meta.questionLanguage];
+  const verb: string = conjugationData[language];
   return `${pronoun}${verb}`;
 };
 

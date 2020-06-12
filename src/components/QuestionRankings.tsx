@@ -2,11 +2,7 @@ import React from "react";
 import { Table } from "semantic-ui-react";
 
 import { Verb, QuestionRankings as QuestionRankingsType } from "../types";
-import {
-  getVerbTextWithPronoun,
-  convertRankingsIntoList,
-  byWorstFirst,
-} from "../utils";
+import { getVerb, convertRankingsIntoList, byWorstFirst } from "../utils";
 
 const QuestionRankings: React.FC<{
   verbs: Verb[];
@@ -23,12 +19,21 @@ const QuestionRankings: React.FC<{
     <Table.Body>
       {convertRankingsIntoList(questionRankings)
         .sort(byWorstFirst)
-        .map((item, i) => (
-          <Table.Row key={i}>
-            <Table.Cell>{getVerbTextWithPronoun(verbs, item.meta)}</Table.Cell>
-            <Table.Cell>{item.score}</Table.Cell>
-          </Table.Row>
-        ))}
+        .map((item, i) => {
+          const { verbIndex, conjugation, questionLanguage } = item.meta;
+          const label = getVerb(
+            verbs,
+            verbIndex,
+            conjugation,
+            questionLanguage
+          );
+          return (
+            <Table.Row key={i}>
+              <Table.Cell>{label}</Table.Cell>
+              <Table.Cell>{item.score}</Table.Cell>
+            </Table.Row>
+          );
+        })}
     </Table.Body>
   </Table>
 );

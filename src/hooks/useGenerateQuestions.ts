@@ -5,9 +5,10 @@ import {
   randomVerb,
   randomConjugation,
   randomLanguage,
-  getPronoun,
+  // getPronoun,
 } from "./helpers";
 import useAnswerHistory from "./useAnswerHistory";
+import { getVerb } from "../utils";
 
 const useQuestion = (verbs: Verb[]) => {
   const [question, setQuestion] = useState<string>();
@@ -21,26 +22,12 @@ const useQuestion = (verbs: Verb[]) => {
 
   const newQuestion = () => {
     const verbIndex = randomVerb(verbs);
-    const verb = verbs[verbIndex];
     const conjugation = randomConjugation();
-    const verbByConjugation = verb[conjugation];
     const [questionLanguage, answerLanguage] = randomLanguage();
 
-    const questionPronoun = getPronoun(
-      conjugation,
-      questionLanguage,
-      verbByConjugation.concatenate
-    );
-    const answerPronoun = getPronoun(
-      conjugation,
-      answerLanguage,
-      verbByConjugation.concatenate
-    );
+    const question = getVerb(verbs, verbIndex, conjugation, questionLanguage);
+    const answer = getVerb(verbs, verbIndex, conjugation, answerLanguage);
 
-    const questionWord = verbs[verbIndex][conjugation][questionLanguage];
-    const answerWord = verbs[verbIndex][conjugation][answerLanguage];
-    const question = `${questionPronoun}${questionWord}`;
-    const answer = `${answerPronoun}${answerWord}`;
     setQuestion(question);
     setAnswer(answer);
     setMeta({ verbIndex, conjugation, questionLanguage, answerLanguage });

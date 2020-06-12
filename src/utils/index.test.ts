@@ -1,6 +1,6 @@
-import { getVerbTextWithPronoun } from ".";
+import { getVerb } from ".";
 
-import { Verb, Meta } from "../types";
+import { Verb } from "../types";
 
 const verbs: Verb[] = [
   {
@@ -18,26 +18,16 @@ const verbs: Verb[] = [
   },
 ];
 
-describe("getVerbTextWithPronoun", () => {
+describe("getVerb", () => {
   it("should return 'j'aime' given 0|firstPersonSingular|french", () => {
-    const meta: Meta = {
-      verbIndex: 0,
-      conjugation: "firstPersonSingular",
-      questionLanguage: "french",
-      answerLanguage: "english",
-    };
-
-    expect(getVerbTextWithPronoun(verbs, meta)).toEqual("j'aime");
+    expect(getVerb(verbs, 0, "firstPersonSingular", "french")).toEqual(
+      "j'aime"
+    );
   });
 
   it("should return 'ils/elles aiment' given 0|thirdPersonPlural|french", () => {
-    const meta: Meta = {
-      verbIndex: 0,
-      conjugation: "thirdPersonPlural",
-      questionLanguage: "french",
-      answerLanguage: "english",
-    };
-
-    expect(getVerbTextWithPronoun(verbs, meta)).toEqual("ils/elles aiment");
+    expect(getVerb(verbs, 0, "thirdPersonPlural", "french")).toEqual(
+      "ils/elles aiment"
+    );
   });
 });
