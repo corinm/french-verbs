@@ -45,9 +45,15 @@ const App = () => {
               path="/"
               render={() => (
                 <TestConjugation
-                  {...statsProps}
-                  {...questionProps}
-                  {...guessProps}
+                  correctCount={statsProps.correctCount}
+                  total={statsProps.total}
+                  question={questionProps.question}
+                  answer={questionProps.answer}
+                  guess={guessProps.guess}
+                  setGuess={guessProps.setGuess}
+                  onSubmit={guessProps.onSubmit}
+                  hasSubmittedAnswer={guessProps.hasSubmittedAnswer}
+                  isCorrect={guessProps.isCorrect}
                 />
               )}
             />
