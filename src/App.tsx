@@ -57,6 +57,7 @@ const App = () => {
                 <History
                   answerHistory={questionProps.answerHistory}
                   questionRankings={questionProps.questionRankings}
+                  verbs={verbs}
                 />
               )}
             />

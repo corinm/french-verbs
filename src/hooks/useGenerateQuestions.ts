@@ -9,10 +9,6 @@ import {
 } from "./helpers";
 import useAnswerHistory from "./useAnswerHistory";
 
-interface OtherHistory {
-  [key: string]: any;
-}
-
 const useQuestion = (verbs: Verb[]) => {
   const [question, setQuestion] = useState<string>();
   const [answer, setAnswer] = useState<string>("");

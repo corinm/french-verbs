@@ -2,7 +2,8 @@ import React from "react";
 import { List, Table } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-import { AnswerHistoryItem, OtherHistory as QuestionRankings } from "../types";
+import { Verb, AnswerHistoryItem, QuestionRankings } from "../types";
+import { getPronoun } from "../hooks/helpers";
 
 const NoHistory: React.FC = () => (
   <span>
@@ -10,9 +11,10 @@ const NoHistory: React.FC = () => (
   </span>
 );
 
-const QuestionRanking: React.FC<{ questionRankings: QuestionRankings }> = ({
-  questionRankings,
-}) => (
+const QuestionRanking: React.FC<{
+  verbs: Verb[];
+  questionRankings: QuestionRankings;
+}> = ({ verbs, questionRankings }) => (
   <Table basic="very" celled collapsing>
     <Table.Header>
       <Table.Row>
@@ -23,7 +25,7 @@ const QuestionRanking: React.FC<{ questionRankings: QuestionRankings }> = ({
 
     <Table.Body>
       {Object.entries(questionRankings)
-        .map(([hash, score]) => ({ hash, score }))
+        .map(([hash, { meta, score }]) => ({ hash, meta, score }))
         .sort((a, b) => {
           if (a.score > b.score) {
             return 1;
@@ -33,12 +35,26 @@ const QuestionRanking: React.FC<{ questionRankings: QuestionRankings }> = ({
             return 0;
           }
         })
-        .map((item, i) => (
-          <Table.Row key={i}>
-            <Table.Cell>{item.hash}</Table.Cell>
-            <Table.Cell>{item.score}</Table.Cell>
-          </Table.Row>
-        ))}
+        .map((item, i) => {
+          const pronoun = getPronoun(
+            item.meta.conjugation,
+            item.meta.questionLanguage,
+            verbs[item.meta.verbIndex][item.meta.conjugation].concatenate
+          );
+          const verb =
+            verbs[item.meta.verbIndex][item.meta.conjugation][
+              item.meta.questionLanguage
+            ];
+          return (
+            <Table.Row key={i}>
+              <Table.Cell>
+                {pronoun}
+                {verb}
+              </Table.Cell>
+              <Table.Cell>{item.score}</Table.Cell>
+            </Table.Row>
+          );
+        })}
     </Table.Body>
   </Table>
 );
@@ -59,14 +75,15 @@ const AnswerList: React.FC<{ answerHistory: AnswerHistoryItem[] }> = ({
 const History: React.FC<{
   answerHistory: AnswerHistoryItem[];
   questionRankings: QuestionRankings;
-}> = ({ answerHistory, questionRankings }) => {
+  verbs: Verb[];
+}> = ({ answerHistory, questionRankings, verbs }) => {
   if (answerHistory.length === 0) {
     return <NoHistory />;
   }
 
   return (
     <div>
-      <QuestionRanking questionRankings={questionRankings} />
+      <QuestionRanking verbs={verbs} questionRankings={questionRankings} />
       <AnswerList answerHistory={answerHistory} />
     </div>
   );

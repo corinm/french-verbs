@@ -29,6 +29,11 @@ export interface AnswerHistoryItem {
   wasCorrect: boolean;
 }
 
-export interface OtherHistory {
-  [key: string]: number;
+interface RankingItem {
+  meta: Meta;
+  score: number;
+}
+
+export interface QuestionRankings {
+  [key: string]: RankingItem;
 }
