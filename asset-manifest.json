@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.js": "/french-verbs/static/js/main.10e4912a.chunk.js",
+    "main.js.map": "/french-verbs/static/js/main.10e4912a.chunk.js.map",
+    "runtime-main.js": "/french-verbs/static/js/runtime-main.e008f16d.js",
+    "runtime-main.js.map": "/french-verbs/static/js/runtime-main.e008f16d.js.map",
+    "static/css/2.83553d5a.chunk.css": "/french-verbs/static/css/2.83553d5a.chunk.css",
+    "static/js/2.aa33d398.chunk.js": "/french-verbs/static/js/2.aa33d398.chunk.js",
+    "static/js/2.aa33d398.chunk.js.map": "/french-verbs/static/js/2.aa33d398.chunk.js.map",
+    "index.html": "/french-verbs/index.html",
+    "precache-manifest.f8a6e6f87304498f238986fe846f20ba.js": "/french-verbs/precache-manifest.f8a6e6f87304498f238986fe846f20ba.js",
+    "service-worker.js": "/french-verbs/service-worker.js",
+    "static/css/2.83553d5a.chunk.css.map": "/french-verbs/static/css/2.83553d5a.chunk.css.map",
+    "static/js/2.aa33d398.chunk.js.LICENSE.txt": "/french-verbs/static/js/2.aa33d398.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/french-verbs/static/media/outline-icons.ef60a4f6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e008f16d.js",
+    "static/css/2.83553d5a.chunk.css",
+    "static/js/2.aa33d398.chunk.js",
+    "static/js/main.10e4912a.chunk.js"
+  ]
+}
