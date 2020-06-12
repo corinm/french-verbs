@@ -77,3 +77,8 @@ export const getPronoun = (
     return englishPronounFromConjugation(conjugation) || "";
   }
 };
+
+export const isSame = (guess: string, answer: string): boolean => {
+  const answerWithoutPlural = answer.replace(" (p) ", " ");
+  return guess.toLowerCase() === answerWithoutPlural.toLowerCase();
+};

@@ -1,9 +1,6 @@
 import { useState } from "react";
 
-const isSame = (guess: string, answer: string): boolean => {
-  const answerWithoutPlural = answer.replace(" (p) ", " ");
-  return guess.toLowerCase() === answerWithoutPlural.toLowerCase();
-};
+import { isSame } from "./helpers";
 
 const useManageGuess = (
   correctAnswer: string,
