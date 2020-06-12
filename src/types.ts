@@ -29,7 +29,7 @@ export interface AnswerHistoryItem {
   wasCorrect: boolean;
 }
 
-interface RankingItem {
+export interface RankingItem {
   meta: Meta;
   score: number;
 }
