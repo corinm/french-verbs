@@ -55,8 +55,8 @@ const App = () => {
               path="/history"
               render={() => (
                 <History
-                  questionHistory={questionProps.questionHistory}
-                  otherHistory={questionProps.otherHistory}
+                  answerHistory={questionProps.answerHistory}
+                  questionRankings={questionProps.questionRankings}
                 />
               )}
             />

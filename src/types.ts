@@ -23,7 +23,7 @@ export interface Meta {
   answerLanguage: string;
 }
 
-export interface QuestionHistoryItem {
+export interface AnswerHistoryItem {
   question: string;
   meta: Meta;
   wasCorrect: boolean;

@@ -7,7 +7,7 @@ import {
   randomLanguage,
   getPronoun,
 } from "./helpers";
-import useQuestionHistory from "./useQuestionHistory";
+import useAnswerHistory from "./useAnswerHistory";
 
 interface OtherHistory {
   [key: string]: any;
@@ -18,7 +18,7 @@ const useQuestion = (verbs: Verb[]) => {
   const [answer, setAnswer] = useState<string>("");
   const [meta, setMeta] = useState<Meta>();
 
-  const { questionHistory, otherHistory, recordOutcome } = useQuestionHistory(
+  const { answerHistory, questionRankings, recordOutcome } = useAnswerHistory(
     question,
     meta
   );
@@ -59,8 +59,8 @@ const useQuestion = (verbs: Verb[]) => {
     answer,
     newQuestion,
     recordOutcome,
-    questionHistory,
-    otherHistory,
+    answerHistory,
+    questionRankings,
   };
 };
 

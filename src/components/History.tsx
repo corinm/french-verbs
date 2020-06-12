@@ -2,7 +2,7 @@ import React from "react";
 import { List } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-import { QuestionHistoryItem, OtherHistory } from "../types";
+import { AnswerHistoryItem, OtherHistory as QuestionRankings } from "../types";
 
 const NoHistory: React.FC = () => (
   <span>
@@ -10,11 +10,11 @@ const NoHistory: React.FC = () => (
   </span>
 );
 
-const VerbRanking: React.FC<{ otherHistory: OtherHistory }> = ({
-  otherHistory,
+const QuestionRanking: React.FC<{ questionRankings: QuestionRankings }> = ({
+  questionRankings,
 }) => (
   <List>
-    {Object.entries(otherHistory)
+    {Object.entries(questionRankings)
       .map(([hash, score]) => ({ hash, score }))
       .sort((a, b) => {
         if (a.score > b.score) {
@@ -34,11 +34,11 @@ const VerbRanking: React.FC<{ otherHistory: OtherHistory }> = ({
   </List>
 );
 
-const AnswerList: React.FC<{ questionHistory: QuestionHistoryItem[] }> = ({
-  questionHistory,
+const AnswerList: React.FC<{ answerHistory: AnswerHistoryItem[] }> = ({
+  answerHistory,
 }) => (
   <List>
-    {questionHistory.map((item, i) => (
+    {answerHistory.map((item, i) => (
       <List.Item key={i}>
         <List.Icon name={item.wasCorrect ? "check" : "times"} />
         <List.Content>{item.question}</List.Content>
@@ -48,17 +48,17 @@ const AnswerList: React.FC<{ questionHistory: QuestionHistoryItem[] }> = ({
 );
 
 const History: React.FC<{
-  questionHistory: QuestionHistoryItem[];
-  otherHistory: OtherHistory;
-}> = ({ questionHistory, otherHistory }) => {
-  if (questionHistory.length === 0) {
+  answerHistory: AnswerHistoryItem[];
+  questionRankings: QuestionRankings;
+}> = ({ answerHistory, questionRankings }) => {
+  if (answerHistory.length === 0) {
     return <NoHistory />;
   }
 
   return (
     <div>
-      <VerbRanking otherHistory={otherHistory} />
-      <AnswerList questionHistory={questionHistory} />
+      <QuestionRanking questionRankings={questionRankings} />
+      <AnswerList answerHistory={answerHistory} />
     </div>
   );
 };
