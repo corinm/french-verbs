@@ -42,7 +42,7 @@ const App = () => {
           <Switch>
             <Route
               exact
-              path="/"
+              path="/french-verbs/"
               render={() => (
                 <TestConjugation
                   correctCount={statsProps.correctCount}
@@ -58,7 +58,7 @@ const App = () => {
               )}
             />
             <Route
-              path="/history"
+              path="/french-verbs/history"
               render={() => (
                 <History
                   answerHistory={questionProps.answerHistory}
@@ -68,7 +68,7 @@ const App = () => {
               )}
             />
             <Route
-              path="/list"
+              path="/french-verbs/list"
               render={() => <ListVerbs verbs={verbs} />}
             ></Route>
           </Switch>
