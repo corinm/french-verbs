@@ -78,6 +78,12 @@ export const getPronoun = (
   }
 };
 
+/**
+ * Compares the user's guess with the desired answer, taking into account
+ * plural notation and case
+ * @param guess
+ * @param answer
+ */
 export const isSame = (guess: string, answer: string): boolean => {
   const answerWithoutPlural = answer.replace(" (p) ", " ");
   return guess.toLowerCase() === answerWithoutPlural.toLowerCase();
@@ -94,6 +100,45 @@ const conjugationsArray: string[] = [
 ];
 
 /**
+ * Returns the current verb the user is learning
+ * @param keysCount
+ */
+export const determineCurrentVerb = (keysCount: number) => {
+  if (keysCount === 0) {
+    return 0;
+  } else {
+    return Math.floor((keysCount - 1) / 7);
+  }
+};
+
+/**
+ * Return the current conjugation the user is learning (from 0 to 6)
+ * @param keysCount
+ */
+export const determineCurrentConjugation = (keysCount: number) => {
+  return keysCount % 7;
+};
+
+/**
+ * Returns true if use has scored 2 or more on every verb-conjugation pair asked so far
+ * @param rankings
+ */
+export const allRankingsAboveOne = (rankings: QuestionRankings): boolean => {
+  return Object.values(rankings).filter((item) => item.score < 2).length === 0;
+};
+
+/**
+ * Returns a conjugation number from 0 - 6 based on a mixture of chance and
+ * which ones have a lower score (i.e. the user is getting them wrong)
+ * @param rankings
+ */
+export const chooseConjugationFromRankings = (
+  rankings: QuestionRankings
+): number => {
+  return 0;
+};
+
+/**
  * Start with first verb, work through each conjugation in turn, french then english
  * Then work on any mistakes until each scores 2 or more
  * Then repeat for each verb in turn
@@ -102,17 +147,27 @@ export const pickQuestion = (
   verbs: Verb[],
   rankings: QuestionRankings
 ): Meta => {
-  if (Object.keys(rankings).length <= 7) {
-    return {
-      verbIndex: 0,
-      conjugation: conjugationsArray[Object.keys(rankings).length],
-      questionLanguage: "french",
-      answerLanguage: "english",
-    };
+  const numberOfRankings = Object.keys(rankings).length;
+  let currentVerb = determineCurrentVerb(numberOfRankings);
+  let currentConjugation = determineCurrentConjugation(numberOfRankings);
+
+  if (numberOfRankings > 0 && currentConjugation === 0) {
+    if (allRankingsAboveOne(rankings)) {
+      currentVerb += 1;
+    } else {
+      currentConjugation = chooseConjugationFromRankings(rankings);
+    }
   }
 
-  const verbIndex = randomVerb(verbs);
-  const conjugation = randomConjugation();
-  const [questionLanguage, answerLanguage] = randomLanguage();
-  return { verbIndex, conjugation, questionLanguage, answerLanguage };
+  return {
+    verbIndex: currentVerb,
+    conjugation: conjugationsArray[currentConjugation],
+    questionLanguage: "french",
+    answerLanguage: "english",
+  };
+
+  // const verbIndex = randomVerb(verbs);
+  // const conjugation = randomConjugation();
+  // const [questionLanguage, answerLanguage] = randomLanguage();
+  // return { verbIndex, conjugation, questionLanguage, answerLanguage };
 };
