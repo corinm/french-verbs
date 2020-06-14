@@ -16,12 +16,12 @@ const useManageGuess = (
     if (hasSubmittedAnswer) {
       setGuess("");
       setHasSubmittedAnswer(false);
+      recordOutcome(isCorrect);
     } else {
       if (guess !== "") {
         setHasSubmittedAnswer(true);
         if (isSame(guess, correctAnswer)) {
           setIsCorrect(true);
-          recordOutcome(true);
           onCorrect();
         } else {
           setIsCorrect(false);
