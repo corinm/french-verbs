@@ -1,10 +1,21 @@
 import React from "react";
-import { Input, Header, Form } from "semantic-ui-react";
+import {
+  Input,
+  Header,
+  Form,
+  Dropdown,
+  DropdownItemProps,
+  DropdownProps,
+} from "semantic-ui-react";
 
+import { Verb } from "../types";
 import Feedback from "./Feedback";
 import Stats from "./Stats";
 
 const TestConjugation: React.FC<{
+  verbs: Verb[];
+  selectedVerb: number;
+  setSelectedVerb: Function;
   setGuess: Function;
   onSubmit: Function;
   question: string | undefined;
@@ -15,6 +26,9 @@ const TestConjugation: React.FC<{
   total: number;
   correctCount: number;
 }> = ({
+  verbs,
+  selectedVerb,
+  setSelectedVerb,
   setGuess,
   onSubmit,
   question,
@@ -25,6 +39,16 @@ const TestConjugation: React.FC<{
   total,
   correctCount,
 }) => {
+  const verbOptions = verbs
+    .map((verb: Verb): string => verb.infinitive.french)
+    .map(
+      (infinitive: string, i: number): DropdownItemProps => ({
+        key: i,
+        text: infinitive,
+        value: i,
+      })
+    );
+
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setGuess(event.target.value);
 
@@ -37,6 +61,14 @@ const TestConjugation: React.FC<{
 
   return (
     <div>
+      <Dropdown
+        placeholder="Select a verb"
+        fluid
+        selection
+        value={selectedVerb}
+        options={verbOptions}
+        onChange={(_, props: DropdownProps) => setSelectedVerb(props.value)}
+      />
       <Header as="h1">{question}</Header>
       <Form.Field inline>
         <Input

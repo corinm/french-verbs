@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Segment, Header } from "semantic-ui-react";
@@ -24,8 +24,9 @@ const Styling = styled.div`
 const App = () => {
   const rng = seedrandom(Date.now().toString());
 
+  const [selectedVerb, setSelectedVerb] = useState<number>(0);
   const statsProps = useStats();
-  const questionProps = useGenerateQuestions(verbs, rng);
+  const questionProps = useGenerateQuestions(verbs, selectedVerb, rng);
   const guessProps = useManageGuess(
     questionProps.answer,
     statsProps.incrementCorrect,
@@ -47,6 +48,9 @@ const App = () => {
               path="/french-verbs/"
               render={() => (
                 <TestConjugation
+                  verbs={verbs}
+                  selectedVerb={selectedVerb}
+                  setSelectedVerb={setSelectedVerb}
                   correctCount={statsProps.correctCount}
                   total={statsProps.total}
                   question={questionProps.question}

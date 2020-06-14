@@ -1,28 +1,6 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 
-import { Meta } from "../types";
 import useLists from "./useLists";
-
-const combinations: Meta[] = [
-  { verbIndex: 0, conjugation: "infinitive", language: "french" },
-  { verbIndex: 0, conjugation: "firstPersonSingular", language: "french" },
-  { verbIndex: 0, conjugation: "secondPersonSingular", language: "french" },
-  { verbIndex: 0, conjugation: "thirdPersonSingular", language: "french" },
-  { verbIndex: 0, conjugation: "firstPersonPlural", language: "french" },
-  { verbIndex: 0, conjugation: "secondPersonPlural", language: "french" },
-  { verbIndex: 0, conjugation: "thirdPersonPlural", language: "french" },
-  { verbIndex: 0, conjugation: "infinitive", language: "english" },
-  { verbIndex: 0, conjugation: "firstPersonSingular", language: "english" },
-  {
-    verbIndex: 0,
-    conjugation: "secondPersonSingular",
-    language: "english",
-  },
-  { verbIndex: 0, conjugation: "thirdPersonSingular", language: "english" },
-  { verbIndex: 0, conjugation: "firstPersonPlural", language: "english" },
-  { verbIndex: 0, conjugation: "secondPersonPlural", language: "english" },
-  { verbIndex: 0, conjugation: "thirdPersonPlural", language: "english" },
-];
 
 describe("useLists", () => {
   it("should start off with empty lists", () => {
@@ -36,7 +14,7 @@ describe("useLists", () => {
     const { result } = renderHook(() => useLists());
 
     act(() => {
-      result.current.initialise(combinations);
+      result.current.initialise(0);
     });
 
     expect(result.current.toTest).toHaveLength(14);
@@ -48,7 +26,7 @@ describe("useLists", () => {
     const { result } = renderHook(() => useLists());
 
     act(() => {
-      result.current.initialise(combinations);
+      result.current.initialise(0);
     });
     act(() => {
       result.current.moveFromTestToIncorrect(2);
@@ -74,7 +52,7 @@ describe("useLists", () => {
     const { result } = renderHook(() => useLists());
 
     act(() => {
-      result.current.initialise(combinations);
+      result.current.initialise(0);
     });
     act(() => {
       result.current.moveFromToTestToDoubleCheck(2);
@@ -100,7 +78,7 @@ describe("useLists", () => {
     const { result } = renderHook(() => useLists());
 
     act(() => {
-      result.current.initialise(combinations);
+      result.current.initialise(0);
     });
     act(() => {
       result.current.moveFromTestToIncorrect(2);
@@ -134,7 +112,7 @@ describe("useLists", () => {
     const { result } = renderHook(() => useLists());
 
     act(() => {
-      result.current.initialise(combinations);
+      result.current.initialise(0);
     });
     act(() => {
       result.current.moveFromToTestToDoubleCheck(2);
@@ -168,7 +146,7 @@ describe("useLists", () => {
     const { result } = renderHook(() => useLists());
 
     act(() => {
-      result.current.initialise(combinations);
+      result.current.initialise(0);
     });
     act(() => {
       result.current.moveFromToTestToDoubleCheck(2);

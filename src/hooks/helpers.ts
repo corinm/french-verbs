@@ -47,7 +47,7 @@ const otherFrenchPronouns: Pronouns = {
 
 export const frenchPronounFromConjugation = (
   conjugation: string,
-  concatenate: Boolean
+  concatenate: boolean
 ): string => {
   if (conjugation === "firstPersonSingular") {
     return concatenate ? "j'" : "je ";
@@ -71,7 +71,7 @@ export const englishPronounFromConjugation = (conjugation: string): string =>
 export const getPronoun = (
   conjugation: string,
   language: string,
-  concatenate: Boolean
+  concatenate: boolean
 ) => {
   if (language === "french") {
     return frenchPronounFromConjugation(conjugation, concatenate) || "";

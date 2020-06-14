@@ -6,7 +6,27 @@ import { getVerb } from "../utils";
 import pickQuestion from "../utils/pickQuestion";
 import useLists from "./useLists";
 
-const useGenerateQuestion = (verbs: Verb[], rng: Function) => {
+const useReinitialiseIfVerbChanges = (
+  storedVerb: number | undefined,
+  selectedVerb: number,
+  setStoredVerb: Function,
+  initialise: Function,
+  setWantNewQuestion: Function
+) => {
+  useEffect(() => {
+    if (storedVerb !== selectedVerb) {
+      setStoredVerb(selectedVerb);
+      initialise(selectedVerb);
+      setWantNewQuestion(true);
+    }
+  }, [selectedVerb, initialise, storedVerb, setStoredVerb, setWantNewQuestion]);
+};
+
+const useGenerateQuestion = (
+  verbs: Verb[],
+  selectedVerb: number,
+  rng: Function
+) => {
   const [question, setQuestion] = useState<string>();
   const [answer, setAnswer] = useState<string>("");
   const [meta, setMeta] = useState<Meta>();
@@ -30,6 +50,15 @@ const useGenerateQuestion = (verbs: Verb[], rng: Function) => {
     removeFromDoubleCheck,
   } = useLists();
   const [listIndex, setListIndex] = useState(0);
+  const [storedVerb, setStoredVerb] = useState<number | undefined>();
+
+  useReinitialiseIfVerbChanges(
+    storedVerb,
+    selectedVerb,
+    setStoredVerb,
+    initialise,
+    setWantNewQuestion
+  );
 
   useEffect(() => {
     const newQuestion = () => {
@@ -97,29 +126,6 @@ const useGenerateQuestion = (verbs: Verb[], rng: Function) => {
     recordOutcomeInHistory(wasCorrect);
     setWantNewQuestion(true);
   };
-
-  if (toTest.length === 0 && incorrect.length === 0) {
-    initialise([
-      { verbIndex: 0, conjugation: "infinitive", language: "french" },
-      { verbIndex: 0, conjugation: "firstPersonSingular", language: "french" },
-      { verbIndex: 0, conjugation: "secondPersonSingular", language: "french" },
-      { verbIndex: 0, conjugation: "thirdPersonSingular", language: "french" },
-      { verbIndex: 0, conjugation: "firstPersonPlural", language: "french" },
-      { verbIndex: 0, conjugation: "secondPersonPlural", language: "french" },
-      { verbIndex: 0, conjugation: "thirdPersonPlural", language: "french" },
-      { verbIndex: 0, conjugation: "infinitive", language: "english" },
-      { verbIndex: 0, conjugation: "firstPersonSingular", language: "english" },
-      {
-        verbIndex: 0,
-        conjugation: "secondPersonSingular",
-        language: "english",
-      },
-      { verbIndex: 0, conjugation: "thirdPersonSingular", language: "english" },
-      { verbIndex: 0, conjugation: "firstPersonPlural", language: "english" },
-      { verbIndex: 0, conjugation: "secondPersonPlural", language: "english" },
-      { verbIndex: 0, conjugation: "thirdPersonPlural", language: "english" },
-    ]);
-  }
 
   return {
     question,

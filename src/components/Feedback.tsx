@@ -2,8 +2,8 @@ import React from "react";
 import { Label } from "semantic-ui-react";
 
 const Feedback: React.FC<{
-  hasSubmittedAnswer: Boolean;
-  isCorrect: Boolean;
+  hasSubmittedAnswer: boolean;
+  isCorrect: boolean;
   answer: string;
 }> = ({ hasSubmittedAnswer, isCorrect, answer }) => {
   if (hasSubmittedAnswer) {

@@ -7,8 +7,79 @@ const useLists = () => {
   const [incorrect, setIncorrect] = useState<Meta[]>([]);
   const [doubleCheck, setDoubleCheck] = useState<Meta[]>([]);
 
-  const initialise = (thingsToTest: Meta[]) => {
-    setToTest(thingsToTest);
+  const initialise = (selectedVerb: number) => {
+    setToTest([
+      {
+        verbIndex: selectedVerb,
+        conjugation: "infinitive",
+        language: "french",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "firstPersonSingular",
+        language: "french",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "secondPersonSingular",
+        language: "french",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "thirdPersonSingular",
+        language: "french",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "firstPersonPlural",
+        language: "french",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "secondPersonPlural",
+        language: "french",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "thirdPersonPlural",
+        language: "french",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "infinitive",
+        language: "english",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "firstPersonSingular",
+        language: "english",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "secondPersonSingular",
+        language: "english",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "thirdPersonSingular",
+        language: "english",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "firstPersonPlural",
+        language: "english",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "secondPersonPlural",
+        language: "english",
+      },
+      {
+        verbIndex: selectedVerb,
+        conjugation: "thirdPersonPlural",
+        language: "english",
+      },
+    ]);
     setIncorrect([]);
     setDoubleCheck([]);
   };

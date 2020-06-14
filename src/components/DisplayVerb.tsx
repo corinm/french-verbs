@@ -14,7 +14,7 @@ const VerbText = styled.span`
   color: red;
 `;
 
-const Conjugation: React.FC<{ pronoun: String; verb: String }> = ({
+const Conjugation: React.FC<{ pronoun: string; verb: string }> = ({
   pronoun,
   verb,
 }) => (

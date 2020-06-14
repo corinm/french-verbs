@@ -23,7 +23,7 @@ describe("useGenerateQuestions", () => {
 
   it("should ask a full verb once in a random order if all answers correct", () => {
     const rng = seedrandom("abc");
-    const { result } = renderHook(() => useGenerateQuestions(verbs, rng));
+    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
     const questionsAsked = [];
 
     for (let i = 0; i < 14; i++) {
@@ -52,7 +52,7 @@ describe("useGenerateQuestions", () => {
 
   it("should ask a full verb once if all answers were incorrect", () => {
     const rng = seedrandom("abc");
-    const { result } = renderHook(() => useGenerateQuestions(verbs, rng));
+    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
     const questionsAsked = [];
 
     for (let i = 0; i < 14; i++) {
@@ -81,7 +81,7 @@ describe("useGenerateQuestions", () => {
 
   it("should ask a full verb once, then any that were wrong", () => {
     const rng = seedrandom("abc");
-    const { result } = renderHook(() => useGenerateQuestions(verbs, rng));
+    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
     const questionsAsked = [];
 
     for (let i = 0; i < 14 + 2; i++) {
@@ -118,8 +118,10 @@ describe("useGenerateQuestions", () => {
   });
 
   it("should ask a full verb twice if all were correct", () => {
+    // Actual:  10 8 8 6 3   2 4 5 2 4   1 0 0 0 10   2 2 9 9 6   3 5 0 4 1   1 0 0
     const rng = seedrandom("abc");
-    const { result } = renderHook(() => useGenerateQuestions(verbs, rng));
+
+    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
     const questionsAsked = [];
 
     for (let i = 0; i < 14; i++) {
@@ -150,26 +152,26 @@ describe("useGenerateQuestions", () => {
       "we like",
 
       // Double check
-      "he/she likes",
-      "tu aimes",
-      "il/elle aime",
-      "you (p) like",
-      "they like",
-      "I like",
-      "vous aimez",
+      "j'aime",
       "you like",
-      "aimer",
+      "ils/elles aiment",
+      "vous aimez",
       "we like",
       "nous aimons",
-      "ils/elles aiment",
-      "j'aime",
+      "tu aimes",
+      "they like",
+      "he/she likes",
+      "aimer",
+      "il/elle aime",
       "to like",
+      "I like",
+      "you (p) like",
     ]);
   });
 
   it("should ask a full verb once, then two incorrect ones, then full verb again", () => {
     const rng = seedrandom("abc");
-    const { result } = renderHook(() => useGenerateQuestions(verbs, rng));
+    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
     const questionsAsked = [];
 
     for (let i = 0; i < 14; i++) {
@@ -214,20 +216,20 @@ describe("useGenerateQuestions", () => {
       "you like",
 
       // Double check
-      "tu aimes",
+      "il/elle aime",
+      "ils/elles aiment",
+      "you like",
+      "j'aime",
       "you (p) like",
-      "they like",
-      "I like",
       "vous aimez",
       "he/she likes",
       "aimer",
-      "you like",
-      "nous aimons",
       "to like",
-      "il/elle aime",
+      "they like",
+      "tu aimes",
       "we like",
-      "ils/elles aiment",
-      "j'aime",
+      "nous aimons",
+      "I like",
     ]);
   });
 });
