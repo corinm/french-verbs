@@ -19,8 +19,7 @@ export interface Verb {
 export interface Meta {
   verbIndex: number;
   conjugation: string;
-  questionLanguage: string;
-  answerLanguage: string;
+  language: string;
 }
 
 export interface AnswerHistoryItem {

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Segment, Header } from "semantic-ui-react";
+import seedrandom from "seedrandom";
 
 import Menu from "./components/Menu";
 import TestConjugation from "./components/TestConjugation";
@@ -21,8 +22,10 @@ const Styling = styled.div`
 `;
 
 const App = () => {
+  const rng = seedrandom(Date.now().toString());
+
   const statsProps = useStats();
-  const questionProps = useGenerateQuestions(verbs);
+  const questionProps = useGenerateQuestions(verbs, rng);
   const guessProps = useManageGuess(
     questionProps.answer,
     statsProps.incrementCorrect,

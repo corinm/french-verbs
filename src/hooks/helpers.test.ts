@@ -94,7 +94,7 @@ describe("allRankingsAboveOne", () => {
   });
 });
 
-describe("pickQuestion", () => {
+xdescribe("pickQuestion", () => {
   it("should return the 0.infinitive.french first", () => {
     const rankings: any = {};
     expect(pickQuestion(verbs, rankings)).toEqual({

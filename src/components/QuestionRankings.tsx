@@ -20,13 +20,8 @@ const QuestionRankings: React.FC<{
       {convertRankingsIntoList(questionRankings)
         .sort(byWorstFirst)
         .map((item, i) => {
-          const { verbIndex, conjugation, questionLanguage } = item.meta;
-          const label = getVerb(
-            verbs,
-            verbIndex,
-            conjugation,
-            questionLanguage
-          );
+          const { verbIndex, conjugation, language } = item.meta;
+          const label = getVerb(verbs, verbIndex, conjugation, language);
           return (
             <Table.Row key={i}>
               <Table.Cell>{label}</Table.Cell>
