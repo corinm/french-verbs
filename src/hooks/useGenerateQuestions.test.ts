@@ -151,8 +151,8 @@ describe("useGenerateQuestions", () => {
 
     act(() => result.current.recordOutcome(true));
     act(() => result.current.recordOutcome(true));
-    act(() => result.current.recordOutcome(false));
-    act(() => result.current.recordOutcome(false));
+    act(() => result.current.recordOutcome(false)); // 3
+    act(() => result.current.recordOutcome(false)); // 4
     act(() => result.current.recordOutcome(true));
     act(() => result.current.recordOutcome(true));
     act(() => result.current.recordOutcome(true));
@@ -168,6 +168,109 @@ describe("useGenerateQuestions", () => {
     expect(result.current.question).toEqual("ils/elles aiment"); // Wrong 1 / 15
 
     act(() => result.current.recordOutcome(true));
-    expect(result.current.question).toEqual("il/elle aime"); // Wrong 2 / 16
+    expect(result.current.question).toEqual("you like"); // Wrong 2 / 16
+  });
+
+  it("should ask a full verb twice if all were correct", () => {
+    const verbs: Verb[] = [
+      {
+        infinitive: { french: "aimer", english: "to like" },
+        firstPersonSingular: {
+          french: "aime",
+          english: "like",
+          concatenate: true,
+        },
+        secondPersonSingular: { french: "aimes", english: "like" },
+        thirdPersonSingular: { french: "aime", english: "likes" },
+        firstPersonPlural: { french: "aimons", english: "like" },
+        secondPersonPlural: { french: "aimez", english: "like" },
+        thirdPersonPlural: { french: "aiment", english: "like" },
+      },
+    ];
+    const rng = seedrandom("abc");
+
+    const { result } = renderHook(() => useGenerateQuestions(verbs, rng));
+
+    expect(result.current.question).toEqual("he/she likes"); // 1
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("I like"); // 2
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("you like"); // 3
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("ils/elles aiment"); // 4
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("il/elle aime"); // 5
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("tu aimes"); // 6
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("to like"); // 7
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("you (p) like"); // 8
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("nous aimons"); // 9
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("they like"); // 10
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("j'aime"); // 11
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("aimer"); // 12
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("vous aimez"); // 13
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("we like"); // 14
+
+    expect(result.current.question).toEqual("we like"); // 2-1
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("he/she likes"); // 2-2
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("tu aimes"); // 2-3
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("il/elle aime"); // 2-4
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("you (p) like"); // 2-5
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("they like"); // 2-6
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("I like"); // 2-7
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("vous aimez"); // 2-8
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("you like"); // 2-9
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("aimer"); // 2-10
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("we like"); // 2-11
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("nous aimons"); // 2-12
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("ils/elles aiment"); // 2-13
+
+    act(() => result.current.recordOutcome(true));
+    expect(result.current.question).toEqual("j'aime"); // 2-14
   });
 });
