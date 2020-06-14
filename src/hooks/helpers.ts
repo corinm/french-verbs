@@ -1,6 +1,6 @@
 import seedrandom from "seedrandom";
 
-import { Verb, QuestionRankings, Meta } from "../types";
+import { Verb, QuestionRankings } from "../types";
 
 const randomNumber = (max: number): number => {
   const min = 0;
@@ -91,16 +91,6 @@ export const isSame = (guess: string, answer: string): boolean => {
   return guess.toLowerCase() === answerWithoutPlural.toLowerCase();
 };
 
-const conjugationsArray: string[] = [
-  "infinitive",
-  "firstPersonSingular",
-  "secondPersonSingular",
-  "thirdPersonSingular",
-  "firstPersonPlural",
-  "secondPersonPlural",
-  "thirdPersonPlural",
-];
-
 /**
  * Returns the current verb the user is learning
  * @param keysCount
@@ -141,39 +131,3 @@ export const chooseConjugationFromRankings = (
   const rng = seedrandom(seed); // Need to round this
   return rng();
 };
-
-// /**
-//  * Start with first verb, work through each conjugation in turn, french then english
-//  * Then work on any mistakes until each scores 2 or more
-//  * Then repeat for each verb in turn
-//  */
-// export const pickQuestion = (
-//   verbs: Verb[],
-//   rankings: QuestionRankings
-// ): Meta => {
-//   const numberOfRankings = Object.keys(rankings).length;
-//   let currentVerb = determineCurrentVerb(numberOfRankings);
-//   let currentConjugation = determineCurrentConjugation(numberOfRankings);
-
-//   if (numberOfRankings > 0 && currentConjugation === 0) {
-//     if (allRankingsAboveOne(rankings)) {
-//       currentVerb += 1;
-//     } else {
-//       currentConjugation = chooseConjugationFromRankings(
-//         rankings,
-//         Date.now().toString()
-//       );
-//     }
-//   }
-
-//   return {
-//     verbIndex: currentVerb,
-//     conjugation: conjugationsArray[currentConjugation],
-//     language: "french",
-//   };
-
-//   // const verbIndex = randomVerb(verbs);
-//   // const conjugation = randomConjugation();
-//   // const [questionLanguage, answerLanguage] = randomLanguage();
-//   // return { verbIndex, conjugation, questionLanguage, answerLanguage };
-// };

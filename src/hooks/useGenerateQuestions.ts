@@ -10,6 +10,7 @@ const useGenerateQuestion = (verbs: Verb[], rng: Function) => {
   const [question, setQuestion] = useState<string>();
   const [answer, setAnswer] = useState<string>("");
   const [meta, setMeta] = useState<Meta>();
+  const [wantNewQuestion, setWantNewQuestion] = useState(true);
 
   const {
     answerHistory,
@@ -63,10 +64,14 @@ const useGenerateQuestion = (verbs: Verb[], rng: Function) => {
       setMeta({ verbIndex, conjugation, language });
     };
 
-    if (toTest.length > 0 || incorrect.length > 0 || doubleCheck.length > 0) {
+    if (
+      (toTest.length > 0 || incorrect.length > 0 || doubleCheck.length > 0) &&
+      wantNewQuestion
+    ) {
       newQuestion();
+      setWantNewQuestion(false);
     }
-  }, [toTest, incorrect, doubleCheck, rng, verbs]);
+  }, [toTest, incorrect, doubleCheck, rng, verbs, wantNewQuestion]);
 
   const recordOutcome = (wasCorrect: boolean) => {
     if (toTest.length > 0) {
@@ -90,6 +95,7 @@ const useGenerateQuestion = (verbs: Verb[], rng: Function) => {
     }
 
     recordOutcomeInHistory(wasCorrect);
+    setWantNewQuestion(true);
   };
 
   if (toTest.length === 0 && incorrect.length === 0) {

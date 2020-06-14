@@ -30,7 +30,6 @@ const App = () => {
     questionProps.answer,
     statsProps.incrementCorrect,
     statsProps.incrementWrong,
-    questionProps.newQuestion,
     questionProps.recordOutcome
   );
 

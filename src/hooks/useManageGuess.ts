@@ -6,7 +6,6 @@ const useManageGuess = (
   correctAnswer: string,
   onCorrect: Function,
   onWrong: Function,
-  onSecondSubmit: Function,
   recordOutcome: Function
 ) => {
   const [guess, setGuess] = useState("");
@@ -17,7 +16,6 @@ const useManageGuess = (
     if (hasSubmittedAnswer) {
       setGuess("");
       setHasSubmittedAnswer(false);
-      onSecondSubmit();
     } else {
       if (guess !== "") {
         setHasSubmittedAnswer(true);
