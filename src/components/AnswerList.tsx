@@ -8,7 +8,7 @@ const AnswerList: React.FC<{ answerHistory: AnswerHistoryItem[] }> = ({
 }) => (
   <List>
     {answerHistory.map((item, i) => (
-      <List.Item key={i}>
+      <List.Item key={i} style={{ color: item.wasCorrect ? "green" : "red" }}>
         <List.Icon name={item.wasCorrect ? "check" : "times"} />
         <List.Content>{item.question}</List.Content>
       </List.Item>

@@ -12,11 +12,7 @@ const History: React.FC<{
     return <NoHistory />;
   }
 
-  return (
-    <div>
-      <AnswerList answerHistory={answerHistory} />
-    </div>
-  );
+  return <AnswerList answerHistory={answerHistory} />;
 };
 
 export default History;
