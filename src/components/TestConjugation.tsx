@@ -12,8 +12,11 @@ import { Verb } from "../types";
 import Feedback from "./Feedback";
 import Stats from "./Stats";
 import VerbLearnedMessage from "./VerbLearnedMessage";
+import ChooseLanguage from "./ChooseLanguage";
 
 const TestConjugation: React.FC<{
+  language: string;
+  setLanguage: Function;
   verbs: Verb[];
   selectedVerb: number;
   setSelectedVerb: Function;
@@ -28,6 +31,8 @@ const TestConjugation: React.FC<{
   correctCount: number;
   learned: boolean;
 }> = ({
+  language,
+  setLanguage,
   verbs,
   selectedVerb,
   setSelectedVerb,
@@ -64,6 +69,7 @@ const TestConjugation: React.FC<{
 
   return (
     <div>
+      <ChooseLanguage language={language} setLanguage={setLanguage} />
       <Dropdown
         placeholder="Select a verb"
         fluid

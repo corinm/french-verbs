@@ -24,6 +24,7 @@ const Styling = styled.div`
 const App = () => {
   const rng = seedrandom(Date.now().toString());
 
+  const [language, setLanguage] = useState("french");
   const [selectedVerb, setSelectedVerb] = useState<number>(0);
   const statsProps = useStats();
   const questionProps = useGenerateQuestions(verbs, selectedVerb, rng);
@@ -48,6 +49,8 @@ const App = () => {
               path="/french-verbs/"
               render={() => (
                 <TestConjugation
+                  language={language}
+                  setLanguage={setLanguage}
                   verbs={verbs}
                   selectedVerb={selectedVerb}
                   setSelectedVerb={setSelectedVerb}
