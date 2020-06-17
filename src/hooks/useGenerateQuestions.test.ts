@@ -232,4 +232,70 @@ describe("useGenerateQuestions", () => {
       "I like",
     ]);
   });
+
+  it("should return learned true after two round of correct answers", () => {
+    const rng = seedrandom("abc");
+
+    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
+    const questionsAsked = [];
+
+    for (let i = 0; i < 14; i++) {
+      questionsAsked.push(result.current.question); // 1 - 14
+      expect(result.current.learned).toBe(false);
+      act(() => result.current.recordOutcome(true));
+    }
+
+    for (let i = 0; i < 14; i++) {
+      questionsAsked.push(result.current.question); // 15 - 28
+      expect(result.current.learned).toBe(false);
+      act(() => result.current.recordOutcome(true));
+    }
+
+    expect(result.current.learned).toBe(true);
+  });
+
+  it("should ask new random conjugations after user has completed two correct rounds", () => {
+    const rng = seedrandom("abc");
+
+    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
+    const questionsAsked = [];
+
+    for (let i = 0; i < 14; i++) {
+      questionsAsked.push(result.current.question); // 1 - 14
+      act(() => result.current.recordOutcome(true));
+    }
+
+    for (let i = 0; i < 14; i++) {
+      questionsAsked.push(result.current.question); // 15 - 28
+      act(() => result.current.recordOutcome(true));
+    }
+
+    expect(result.current.learned).toBe(true);
+    const questionsAskedAfterLearned = [];
+
+    for (let i = 0; i < 14; i++) {
+      questionsAskedAfterLearned.push(result.current.question); // 29 - 42
+      act(() => result.current.recordOutcome(true));
+    }
+
+    expect(questionsAsked).toHaveLength(28);
+    expect(result.current.learned).toBe(true);
+    expect(questionsAskedAfterLearned).toHaveLength(14);
+    expect(questionsAskedAfterLearned).toEqual([
+      "I like",
+      "j'aime",
+      "to like",
+      "he/she likes",
+      "they like",
+      "tu aimes",
+      "you (p) like",
+      "ils/elles aiment",
+      "il/elle aime",
+      "nous aimons",
+      "we like",
+      "you like",
+      "vous aimez",
+      "aimer",
+    ]);
+  });
 });

@@ -31,6 +31,7 @@ const useGenerateQuestion = (
   const [answer, setAnswer] = useState<string>("");
   const [meta, setMeta] = useState<Meta>();
   const [wantNewQuestion, setWantNewQuestion] = useState(true);
+  const [learned, setLearned] = useState(false);
 
   const {
     answerHistory,
@@ -118,6 +119,11 @@ const useGenerateQuestion = (
     } else {
       if (wasCorrect) {
         removeFromDoubleCheck(listIndex);
+        if (doubleCheck.length < 2) {
+          // Use has completed two rounds
+          setLearned(true);
+          initialise(selectedVerb);
+        }
       } else {
         moveFromDoubleCheckToIncorrect(listIndex);
       }
@@ -133,6 +139,7 @@ const useGenerateQuestion = (
     recordOutcome,
     answerHistory,
     questionRankings,
+    learned,
   };
 };
 
