@@ -1,7 +1,7 @@
 export interface Conjugation {
-  french: String;
-  concatenate?: Boolean;
-  english: String;
+  french: string;
+  concatenate?: boolean;
+  english: string;
   [key: string]: any;
 }
 
@@ -19,8 +19,7 @@ export interface Verb {
 export interface Meta {
   verbIndex: number;
   conjugation: string;
-  questionLanguage: string;
-  answerLanguage: string;
+  language: string;
 }
 
 export interface AnswerHistoryItem {

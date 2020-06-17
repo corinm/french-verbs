@@ -5,8 +5,7 @@ import { Meta, AnswerHistoryItem, QuestionRankings } from "../types";
 const blankMeta = {
   verbIndex: 0,
   conjugation: "",
-  questionLanguage: "",
-  answerLanguage: "",
+  language: "",
 };
 
 const useAnswerHistory = (question = "", meta: Meta = { ...blankMeta }) => {
@@ -16,7 +15,7 @@ const useAnswerHistory = (question = "", meta: Meta = { ...blankMeta }) => {
   );
 
   const addToRankings = (meta: Meta, wasCorrect: boolean) => {
-    const key = `${meta.questionLanguage}-${meta.verbIndex}-${meta.conjugation}`;
+    const key = `${meta.verbIndex}-${meta.conjugation}-${meta.language}`;
     const score = wasCorrect ? 1 : -1;
 
     if (questionRankings[key] !== undefined) {

@@ -6,24 +6,18 @@ const useManageGuess = (
   correctAnswer: string,
   onCorrect: Function,
   onWrong: Function,
-  onSecondSubmit: Function,
   recordOutcome: Function
 ) => {
   const [guess, setGuess] = useState("");
-  const [hasSubmittedAnswer, setHasSubmittedAnswer] = useState(false);
+  const [hasAlreadyGuessed, setHasAlreadyGuessed] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
 
   const onSubmit = () => {
-    if (hasSubmittedAnswer) {
-      setGuess("");
-      setHasSubmittedAnswer(false);
-      onSecondSubmit();
-    } else {
+    if (!hasAlreadyGuessed) {
       if (guess !== "") {
-        setHasSubmittedAnswer(true);
+        setHasAlreadyGuessed(true);
         if (isSame(guess, correctAnswer)) {
           setIsCorrect(true);
-          recordOutcome(true);
           onCorrect();
         } else {
           setIsCorrect(false);
@@ -31,10 +25,20 @@ const useManageGuess = (
           onWrong();
         }
       }
+    } else {
+      setGuess("");
+      setHasAlreadyGuessed(false);
+      recordOutcome(isCorrect);
     }
   };
 
-  return { guess, setGuess, hasSubmittedAnswer, isCorrect, onSubmit };
+  return {
+    guess,
+    setGuess,
+    hasSubmittedAnswer: hasAlreadyGuessed,
+    isCorrect,
+    onSubmit,
+  };
 };
 
 export default useManageGuess;
