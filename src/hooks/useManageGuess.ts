@@ -21,7 +21,6 @@ const useManageGuess = (
           onCorrect();
         } else {
           setIsCorrect(false);
-          recordOutcome(false);
           onWrong();
         }
       }
