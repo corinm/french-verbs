@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a307fdacd1b87f14e4807c88de40ebaa",
+    "revision": "f4512bb391469c42d3fecc2a227b2f8f",
     "url": "/french-verbs/index.html"
   },
   {
-    "revision": "ec57676be0af58ada4b8",
+    "revision": "45da9309727952ef07ba",
     "url": "/french-verbs/static/css/2.83553d5a.chunk.css"
   },
   {
-    "revision": "ec57676be0af58ada4b8",
-    "url": "/french-verbs/static/js/2.aa33d398.chunk.js"
+    "revision": "45da9309727952ef07ba",
+    "url": "/french-verbs/static/js/2.764db3a9.chunk.js"
   },
   {
     "revision": "4d47ffde3dc69784e8e23fd910817ef8",
-    "url": "/french-verbs/static/js/2.aa33d398.chunk.js.LICENSE.txt"
+    "url": "/french-verbs/static/js/2.764db3a9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d41b406a630bb14a995d",
-    "url": "/french-verbs/static/js/main.10e4912a.chunk.js"
+    "revision": "646cc05b34e3de1e1231",
+    "url": "/french-verbs/static/js/main.63d4a313.chunk.js"
   },
   {
     "revision": "7fda32059a0836a9da01",

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/french-verbs/precache-manifest.f8a6e6f87304498f238986fe846f20ba.js"
+  "/french-verbs/precache-manifest.085ff4c05a0f2b5873a5820936f6be87.js"
 );
 
 self.addEventListener('message', (event) => {
