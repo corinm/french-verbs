@@ -55,6 +55,7 @@ const App = () => {
                   total={statsProps.total}
                   question={questionProps.question}
                   answer={questionProps.answer}
+                  learned={questionProps.learned}
                   guess={guessProps.guess}
                   setGuess={guessProps.setGuess}
                   onSubmit={guessProps.onSubmit}

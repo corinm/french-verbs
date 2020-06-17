@@ -11,6 +11,7 @@ import {
 import { Verb } from "../types";
 import Feedback from "./Feedback";
 import Stats from "./Stats";
+import VerbLearnedMessage from "./VerbLearnedMessage";
 
 const TestConjugation: React.FC<{
   verbs: Verb[];
@@ -25,6 +26,7 @@ const TestConjugation: React.FC<{
   isCorrect: boolean;
   total: number;
   correctCount: number;
+  learned: boolean;
 }> = ({
   verbs,
   selectedVerb,
@@ -38,6 +40,7 @@ const TestConjugation: React.FC<{
   isCorrect,
   total,
   correctCount,
+  learned,
 }) => {
   const verbOptions = verbs
     .map((verb: Verb): string => verb.infinitive.french)
@@ -82,6 +85,7 @@ const TestConjugation: React.FC<{
           isCorrect={isCorrect}
           answer={answer}
         />
+        <VerbLearnedMessage learned={learned} />
       </Form.Field>
       <Stats correct={correctCount} total={total} />
     </div>
