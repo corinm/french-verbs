@@ -1,6 +1,4 @@
-import seedrandom from "seedrandom";
-
-import { Verb, QuestionRankings } from "../types";
+import { Verb } from "../types";
 
 const randomNumber = (max: number): number => {
   const min = 0;
@@ -109,25 +107,4 @@ export const determineCurrentVerb = (keysCount: number) => {
  */
 export const determineCurrentConjugation = (keysCount: number) => {
   return keysCount % 7;
-};
-
-/**
- * Returns true if use has scored 2 or more on every verb-conjugation pair asked so far
- * @param rankings
- */
-export const allRankingsAboveOne = (rankings: QuestionRankings): boolean => {
-  return Object.values(rankings).filter((item) => item.score < 2).length === 0;
-};
-
-/**
- * Returns a conjugation number from 0 - 6 based on a mixture of chance and
- * which ones have a lower score (i.e. the user is getting them wrong)
- * @param rankings
- */
-export const chooseConjugationFromRankings = (
-  rankings: QuestionRankings,
-  seed: string
-): number => {
-  const rng = seedrandom(seed); // Need to round this
-  return rng();
 };

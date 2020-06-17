@@ -35,7 +35,6 @@ const useGenerateQuestion = (
 
   const {
     answerHistory,
-    questionRankings,
     recordOutcome: recordOutcomeInHistory,
   } = useAnswerHistory(question, meta);
 
@@ -138,7 +137,6 @@ const useGenerateQuestion = (
     answer,
     recordOutcome,
     answerHistory,
-    questionRankings,
     learned,
   };
 };

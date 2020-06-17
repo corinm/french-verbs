@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Meta, AnswerHistoryItem, QuestionRankings } from "../types";
+import { Meta, AnswerHistoryItem } from "../types";
 
 const blankMeta = {
   verbIndex: 0,
@@ -10,27 +10,6 @@ const blankMeta = {
 
 const useAnswerHistory = (question = "", meta: Meta = { ...blankMeta }) => {
   const [answerHistory, setAnswerHistory] = useState<AnswerHistoryItem[]>([]);
-  const [questionRankings, setQuestionRankings] = useState<QuestionRankings>(
-    {}
-  );
-
-  const addToRankings = (meta: Meta, wasCorrect: boolean) => {
-    const key = `${meta.verbIndex}-${meta.conjugation}-${meta.language}`;
-    const score = wasCorrect ? 1 : -1;
-
-    if (questionRankings[key] !== undefined) {
-      const newScore = questionRankings[key].score + score;
-      setQuestionRankings({
-        ...questionRankings,
-        [key]: { meta, score: newScore },
-      });
-    } else {
-      setQuestionRankings({
-        ...questionRankings,
-        [key]: { meta, score },
-      });
-    }
-  };
 
   const recordOutcome = (wasCorrect: boolean) => {
     setAnswerHistory([
@@ -41,12 +20,10 @@ const useAnswerHistory = (question = "", meta: Meta = { ...blankMeta }) => {
         wasCorrect,
       },
     ]);
-    addToRankings(meta, wasCorrect);
   };
 
   return {
     answerHistory,
-    questionRankings,
     recordOutcome,
   };
 };
