@@ -12,8 +12,7 @@ import ListVerbs from "./components/ListVerbs";
 import useGenerateQuestions from "./hooks/useGenerateQuestions";
 import useStats from "./hooks/useStats";
 import useManageGuess from "./hooks/useManageGuess";
-
-import verbs from "./data";
+import useVerbsByLanguage from "./hooks/useVerbsByLanguage";
 
 const Styling = styled.div`
   * {
@@ -24,7 +23,7 @@ const Styling = styled.div`
 const App = () => {
   const rng = seedrandom(Date.now().toString());
 
-  const [language, setLanguage] = useState("french");
+  const { language, setLanguage, verbs } = useVerbsByLanguage();
   const [selectedVerb, setSelectedVerb] = useState<number>(0);
   const statsProps = useStats();
   const questionProps = useGenerateQuestions(verbs, selectedVerb, rng);

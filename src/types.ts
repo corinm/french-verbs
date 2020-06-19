@@ -16,6 +16,10 @@ export interface Verb {
   [key: string]: any;
 }
 
+export interface VerbsByLanguage {
+  [key: string]: Verb[];
+}
+
 export interface Meta {
   verbIndex: number;
   conjugation: string;
