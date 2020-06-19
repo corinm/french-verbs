@@ -23,7 +23,9 @@ describe("useGenerateQuestions", () => {
 
   it("should ask a full verb once in a random order if all answers correct", () => {
     const rng = seedrandom("abc");
-    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
+    const { result } = renderHook(() =>
+      useGenerateQuestions("french", verbs, 0, rng)
+    );
     const questionsAsked = [];
 
     for (let i = 0; i < 14; i++) {
@@ -52,7 +54,9 @@ describe("useGenerateQuestions", () => {
 
   it("should ask a full verb once if all answers were incorrect", () => {
     const rng = seedrandom("abc");
-    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
+    const { result } = renderHook(() =>
+      useGenerateQuestions("french", verbs, 0, rng)
+    );
     const questionsAsked = [];
 
     for (let i = 0; i < 14; i++) {
@@ -81,7 +85,9 @@ describe("useGenerateQuestions", () => {
 
   it("should ask a full verb once, then any that were wrong", () => {
     const rng = seedrandom("abc");
-    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
+    const { result } = renderHook(() =>
+      useGenerateQuestions("french", verbs, 0, rng)
+    );
     const questionsAsked = [];
 
     for (let i = 0; i < 14 + 2; i++) {
@@ -121,7 +127,9 @@ describe("useGenerateQuestions", () => {
     // Actual:  10 8 8 6 3   2 4 5 2 4   1 0 0 0 10   2 2 9 9 6   3 5 0 4 1   1 0 0
     const rng = seedrandom("abc");
 
-    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
+    const { result } = renderHook(() =>
+      useGenerateQuestions("french", verbs, 0, rng)
+    );
     const questionsAsked = [];
 
     for (let i = 0; i < 14; i++) {
@@ -171,7 +179,9 @@ describe("useGenerateQuestions", () => {
 
   it("should ask a full verb once, then two incorrect ones, then full verb again", () => {
     const rng = seedrandom("abc");
-    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
+    const { result } = renderHook(() =>
+      useGenerateQuestions("french", verbs, 0, rng)
+    );
     const questionsAsked = [];
 
     for (let i = 0; i < 14; i++) {
@@ -236,7 +246,9 @@ describe("useGenerateQuestions", () => {
   it("should return learned true after two round of correct answers", () => {
     const rng = seedrandom("abc");
 
-    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
+    const { result } = renderHook(() =>
+      useGenerateQuestions("french", verbs, 0, rng)
+    );
     const questionsAsked = [];
 
     for (let i = 0; i < 14; i++) {
@@ -257,7 +269,9 @@ describe("useGenerateQuestions", () => {
   it("should ask new random conjugations after user has completed two correct rounds", () => {
     const rng = seedrandom("abc");
 
-    const { result } = renderHook(() => useGenerateQuestions(verbs, 0, rng));
+    const { result } = renderHook(() =>
+      useGenerateQuestions("french", verbs, 0, rng)
+    );
     const questionsAsked = [];
 
     for (let i = 0; i < 14; i++) {

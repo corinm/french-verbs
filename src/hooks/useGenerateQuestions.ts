@@ -23,6 +23,7 @@ const useReinitialiseIfVerbChanges = (
 };
 
 const useGenerateQuestion = (
+  language: string,
   verbs: Verb[],
   selectedVerb: number,
   rng: Function
@@ -60,12 +61,17 @@ const useGenerateQuestion = (
     setWantNewQuestion
   );
 
+  // If language changes, generate a new question
+  useEffect(() => {
+    setWantNewQuestion(true);
+  }, [language]);
+
   useEffect(() => {
     const newQuestion = () => {
       let chosen: Meta = {
         verbIndex: 0,
         conjugation: "infinitive",
-        language: "french",
+        language, // Default to whichever is selected by user
       };
 
       if (toTest.length > 0) {
@@ -82,11 +88,20 @@ const useGenerateQuestion = (
         chosen = doubleCheck[index];
       }
 
-      const { verbIndex, conjugation, language } = chosen;
+      const { verbIndex, conjugation } = chosen;
 
-      const answerLanguage = language === "french" ? "english" : "french";
-      const question = getVerb(verbs, verbIndex, conjugation, language);
+      const answerLanguage =
+        chosen.language === language ? "english" : language;
+      const question = getVerb(verbs, verbIndex, conjugation, chosen.language);
       const answer = getVerb(verbs, verbIndex, conjugation, answerLanguage);
+
+      console.log({
+        verbs,
+        verbIndex,
+        conjugation,
+        chosenLanguage: chosen.language,
+        question,
+      });
 
       setQuestion(question);
       setAnswer(answer);
@@ -100,7 +115,7 @@ const useGenerateQuestion = (
       newQuestion();
       setWantNewQuestion(false);
     }
-  }, [toTest, incorrect, doubleCheck, rng, verbs, wantNewQuestion]);
+  }, [toTest, incorrect, doubleCheck, rng, verbs, wantNewQuestion, language]);
 
   const recordOutcome = (wasCorrect: boolean) => {
     if (toTest.length > 0) {
