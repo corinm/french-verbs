@@ -14,11 +14,16 @@ const startsWithVowel = (word: string): boolean => {
   return vowels.includes(firstLetter);
 };
 
+const startsWithH = (word: string): boolean => {
+  const firstLetter = word.substr(0, 1);
+  return firstLetter === "h";
+};
+
 const renderDefiniteArticle = (french: string, gender: Gender): string => {
-  if (gender === "masculine") {
-    return `le ${french}`;
-  } else if (startsWithVowel(french)) {
+  if (startsWithVowel(french) || startsWithH(french)) {
     return `l'${french}`;
+  } else if (gender === "masculine") {
+    return `le ${french}`;
   } else {
     return `la ${french}`;
   }
