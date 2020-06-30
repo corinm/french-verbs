@@ -16,6 +16,14 @@ export interface Verb {
   [key: string]: any;
 }
 
+export type Gender = "masculine" | "feminine";
+
+export interface Noun {
+  french: string;
+  english: string;
+  gender: Gender;
+}
+
 export interface Meta {
   verbIndex: number;
   conjugation: string;
