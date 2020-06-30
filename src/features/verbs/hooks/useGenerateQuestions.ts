@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 
-import { Verb, Meta } from "../types";
+import { Verb, Meta } from "../../../types";
 import useAnswerHistory from "./useAnswerHistory";
-import { getVerb } from "../utils";
-import pickQuestion from "../utils/pickQuestion";
+import { getVerb, pickQuestion } from "../../../utils";
 import useLists from "./useLists";
 
 const useReinitialiseIfVerbChanges = (

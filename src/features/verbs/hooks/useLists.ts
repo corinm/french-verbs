@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Meta } from "../types";
+import { Meta } from "../../../types";
 
 const useLists = () => {
   const [toTest, setToTest] = useState<Meta[]>([]);

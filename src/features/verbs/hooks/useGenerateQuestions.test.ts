@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import seedrandom from "seedrandom";
 
-import { Verb } from "../types";
+import { Verb } from "../../../types";
 import useGenerateQuestions from "./useGenerateQuestions";
 
 describe("useGenerateQuestions", () => {

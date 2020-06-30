@@ -8,9 +8,9 @@ import {
   DropdownProps,
 } from "semantic-ui-react";
 
-import { Verb } from "../types";
-import Feedback from "./Feedback";
-import Stats from "./Stats";
+import { Verb } from "../../../types";
+import Feedback from "../../Feedback";
+import Stats from "../../Stats";
 import VerbLearnedMessage from "./VerbLearnedMessage";
 
 const TestConjugation: React.FC<{

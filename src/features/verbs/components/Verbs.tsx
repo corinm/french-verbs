@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import seedrandom from "seedrandom";
 import { Route } from "react-router-dom";
 
-import VerbsMenu from "./verbs/VerbsMenu";
+import VerbsMenu from "./VerbsMenu";
 import TestConjugation from "./TestConjugation";
-import History from "./History";
+import History from "../../History";
 import ListVerbs from "./ListVerbs";
 
 import useGenerateQuestions from "../hooks/useGenerateQuestions";

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Header, Segment } from "semantic-ui-react";
 
-import { Verb } from "../types";
+import { Verb } from "../../../types";
 
 const VerbContainer = styled.div`
   margin-bottom: 10px;

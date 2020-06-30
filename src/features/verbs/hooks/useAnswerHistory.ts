@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Meta, AnswerHistoryItem } from "../types";
+import { Meta, AnswerHistoryItem } from "../../../types";
 
 const blankMeta = {
   verbIndex: 0,

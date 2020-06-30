@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Segment, Header } from "semantic-ui-react";
 
-import Menu from "./components/Menu";
-import Welcome from "./components/Welcome";
-import Nouns from "./components/Nouns";
-import Verbs from "./components/Verbs";
+import Menu from "./features/Menu";
+import Welcome from "./features/Welcome";
+import Nouns from "./features/Nouns";
+import Verbs from "./features/verbs/components/Verbs";
 
 const Styling = styled.div`
   * {

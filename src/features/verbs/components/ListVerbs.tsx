@@ -1,7 +1,7 @@
 import React from "react";
 
 import DisplayVerb from "./DisplayVerb";
-import { Verb } from "../types";
+import { Verb } from "../../../types";
 
 const ListVerbs: React.FC<{ verbs: Verb[] }> = ({ verbs }) => (
   <div>

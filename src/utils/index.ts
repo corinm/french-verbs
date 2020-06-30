@@ -1,5 +1,12 @@
-import { Verb, Conjugation } from "../types";
-import { getPronoun } from "../hooks/helpers";
+import { Meta, Verb, Conjugation } from "../types";
+import { getPronoun } from "../features/verbs/hooks/helpers";
+
+const randomNumber = (rng: Function, min: number, max: number): number =>
+  Math.floor(rng() * (max - min + 1) + min);
+
+export const pickQuestion = (rng: Function, list: Meta[]): number => {
+  return randomNumber(rng, 0, list.length - 1);
+};
 
 export const getVerb = (
   verbs: Verb[],

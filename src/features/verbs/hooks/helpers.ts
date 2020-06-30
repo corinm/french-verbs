@@ -1,4 +1,4 @@
-import { Verb } from "../types";
+import { Verb } from "../../../types";
 
 const randomNumber = (max: number): number => {
   const min = 0;
