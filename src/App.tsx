@@ -17,7 +17,7 @@ const Styling = styled.div`
 const App = () => {
   return (
     <Styling>
-      <Header as="h1">French verbs</Header>
+      <Header as="h1">Name to go here</Header>
 
       <Router>
         <Menu />
