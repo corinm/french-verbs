@@ -5,7 +5,7 @@ import { Segment, Header } from "semantic-ui-react";
 
 import Menu from "./features/Menu";
 import Welcome from "./features/Welcome";
-import Nouns from "./features/Nouns";
+import Nouns from "./features/nouns/components/Nouns";
 import Verbs from "./features/verbs/components/Verbs";
 
 const Styling = styled.div`
