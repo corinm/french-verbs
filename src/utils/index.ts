@@ -16,3 +16,9 @@ export const getVerb = (
   const verb: string = conjugationData[language];
   return `${pronoun}${verb}`;
 };
+
+export const isNounsPath = (path: string): boolean =>
+  path.includes("/french-verbs/nouns");
+
+export const isVerbsPath = (path: string): boolean =>
+  path.includes("/french-verbs/verbs");
