@@ -1,8 +1,8 @@
 import React from "react";
 import { Input, Header, Form } from "semantic-ui-react";
 
-import Feedback from "../../Feedback";
-import Stats from "../../Stats";
+import Feedback from "../../common/components/Feedback";
+import Stats from "../../common/components/Stats";
 
 const TestNoun: React.FC<{
   setGuess: Function;

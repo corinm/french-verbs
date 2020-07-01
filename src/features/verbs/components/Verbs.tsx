@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 
 import VerbsMenu from "./VerbsMenu";
 import TestConjugation from "./TestConjugation";
-import History from "../../History";
+import History from "./History";
 import ListVerbs from "./ListVerbs";
 
 import useGenerateQuestions from "../hooks/useGenerateQuestions";
@@ -56,9 +56,7 @@ const Verbs: React.FC = () => {
       />
       <Route
         path={answersPath}
-        render={() => (
-          <History answerHistory={questionProps.answerHistory} verbs={verbs} />
-        )}
+        render={() => <History answerHistory={questionProps.answerHistory} />}
       />
       <Route path={listPath} render={() => <ListVerbs verbs={verbs} />}></Route>
     </>

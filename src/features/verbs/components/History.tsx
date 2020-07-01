@@ -1,13 +1,12 @@
 import React from "react";
 
-import { Verb, AnswerHistoryItem } from "../types";
+import { AnswerHistoryItem } from "../../../types";
 import NoHistory from "./NoHistory";
 import AnswerList from "./AnswerList";
 
 const History: React.FC<{
   answerHistory: AnswerHistoryItem[];
-  verbs: Verb[];
-}> = ({ answerHistory, verbs }) => {
+}> = ({ answerHistory }) => {
   if (answerHistory.length === 0) {
     return <NoHistory />;
   }

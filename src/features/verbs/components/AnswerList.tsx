@@ -1,7 +1,7 @@
 import React from "react";
 import { List } from "semantic-ui-react";
 
-import { AnswerHistoryItem } from "../types";
+import { AnswerHistoryItem } from "../../../types";
 
 const AnswerList: React.FC<{ answerHistory: AnswerHistoryItem[] }> = ({
   answerHistory,

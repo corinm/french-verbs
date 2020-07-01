@@ -9,8 +9,8 @@ import {
 } from "semantic-ui-react";
 
 import { Verb } from "../../../types";
-import Feedback from "../../Feedback";
-import Stats from "../../Stats";
+import Feedback from "../../common/components/Feedback";
+import Stats from "../../common/components/Stats";
 import VerbLearnedMessage from "./VerbLearnedMessage";
 
 const TestConjugation: React.FC<{
