@@ -1,12 +1,7 @@
 import React from "react";
-import styled from "styled-components";
-import { Segment } from "semantic-ui-react";
+import { List } from "semantic-ui-react";
 
 import { Noun, Gender } from "../../../types";
-
-const NounContainer = styled.div`
-  margin-bottom: 10px;
-`;
 
 const startsWithVowel = (word: string): boolean => {
   const firstLetter = word.substr(0, 1);
@@ -38,12 +33,19 @@ const renderIndefiniteArticle = (french: string, gender: Gender): string => {
 };
 
 const DisplayNoun: React.FC<Noun> = ({ french, gender }) => (
-  <NounContainer>
-    <Segment.Group horizontal>
-      <Segment>{renderDefiniteArticle(french, gender)}</Segment>
-      <Segment>{renderIndefiniteArticle(french, gender)}</Segment>
-    </Segment.Group>
-  </NounContainer>
+  <List.Item>
+    <List.Content>
+      <List.Header>
+        {french}
+        {gender === "masculine" ? " (m)" : " (f)"}
+      </List.Header>
+      <List.Description>
+        {renderDefiniteArticle(french, gender)}
+        {" | "}
+        {renderIndefiniteArticle(french, gender)}
+      </List.Description>
+    </List.Content>
+  </List.Item>
 );
 
 export default DisplayNoun;
