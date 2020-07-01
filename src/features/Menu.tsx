@@ -13,13 +13,16 @@ const Menu: React.FC = () => {
   return (
     <div>
       <SemanticMenu pointing>
+        <Link to="/french-verbs">
+          <SemanticMenu.Item
+            name="Welcome"
+            active={location.pathname === "/french-verbs"}
+          />
+        </Link>
         <Link to="/french-verbs/nouns">
           <SemanticMenu.Item
             name="Nouns"
-            active={
-              isNounsPath(location.pathname) ||
-              location.pathname === "/french-verbs"
-            }
+            active={isNounsPath(location.pathname)}
           />
         </Link>
         <Link to="/french-verbs/verbs">
