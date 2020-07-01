@@ -8,8 +8,8 @@ import History from "../../History";
 import ListVerbs from "./ListVerbs";
 
 import useGenerateQuestions from "../hooks/useGenerateQuestions";
-import useStats from "../hooks/useStats";
-import useManageGuess from "../hooks/useManageGuess";
+import useStats from "../../common/hooks/useStats";
+import useManageGuess from "../../common/hooks/useManageGuess";
 
 import verbs from "../data";
 

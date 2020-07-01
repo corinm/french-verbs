@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { isSame } from "./helpers";
+import { isSame } from "../../verbs/hooks/helpers";
 
 const useManageGuess = (
   correctAnswer: string,
